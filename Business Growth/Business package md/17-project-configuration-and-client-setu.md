@@ -1795,7 +1795,7 @@ ASSETS
 
 ---
 
-91. Configuration Acceptance
+# 91. Configuration Acceptance
 
 The configuration is considered complete when:
 
@@ -1813,7 +1813,7 @@ The configuration is considered complete when:
 
 ---
 
-92. Client Configuration Record
+# 92. Client Configuration Record
 
 CLIENT CONFIGURATION
 
@@ -2182,8 +2182,32 @@ without forcing every client to use every feature.
 
 
 ---
+101. Phase 8 Preconditions
 
-101. Final Principle
+Phase 8 is the **client implementation phase** (building an actual client website
+from this reusable package). It may begin only when ALL of the following inputs
+exist. If any is missing, STOP — do not invent the missing input.
+
+```text
+[ ] 1. A real client
+[ ] 2. Verified client business information
+[ ] 3. Approved client design references
+[ ] 4. The ability to create page-specific design manuals
+[ ] 5. Real client content
+[ ] 6. Real client assets
+[ ] 7. Real configuration values
+[ ] 8. Environment / integration information
+```
+
+The full 15-step client-instance bootstrap procedure is defined in:
+
+```text
+18-client-instance-bootstrap.md
+```
+
+---
+
+# 102. Final Principle
 
 The Business Growth template should behave like a configurable system rather than a collection of hardcoded client websites.
 

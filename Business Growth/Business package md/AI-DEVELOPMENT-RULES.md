@@ -267,8 +267,11 @@ navigation.config
 contact.config
 seo.config
 analytics.config
-integrations.config
 ```
+
+Integrations (WhatsApp, Google Maps, email, reCAPTCHA) are configured inside
+`project.config` under the `integrations` section — there is no separate
+`integrations.config` file in this package.
 
 ---
 

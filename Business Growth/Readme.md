@@ -261,6 +261,7 @@ The Business Growth core contains:
 15-client-handover-and-documentation.md
 16-project-acceptance-and-final-delivery-checklist.md
 17-project-configuration-and-client-setup.md
+18-client-instance-bootstrap.md
 ```
 
 Additional agency workflow documents:

@@ -164,3 +164,64 @@ The Phase 3 structural checks were replaced by this schema-driven validation (th
 - `npm audit` decision — see Phase 4 report; `react-router-dom` updated to latest 6.x (6.30.4); the remaining advisories are dev-time tooling (vite/vitest/esbuild) requiring breaking major upgrades and are tracked as technical debt.
 
 **Success criteria met:** `configuration/*.config.json` and `configuration/schemas/*.schema.json` describe exactly the same contract, and Ajv validation passes for all shipped configuration files.
+
+---
+
+## 6. Phase 7 — Config-vs-Content Boundary Decision
+
+### 6.1 Classification
+
+Audit of `configuration/business.config.json` for Phase 7:
+
+- **Category A (stays in config — authoritative business/instance configuration):** `business`, `branding`, `contact`, `businessHours`, `socialMedia`, `legal`, `contentRules`. These describe the business itself and the operating instance, not editorial content.
+- **Category B (content-like collections that currently live in config):** `locations`, `companyStructure.teamMembers`, `credentials` (`certifications`, `awards`, `memberships`), `relationships` (`clients`, `partners`), `businessMetrics`. These are editorial/content-shaped data (collections of records), not instance settings.
+- **Category C (kept as-is in Phase 7):** The collections stay in `business.config.json` for now. The empty template state is valid; `business.config.json` is the single source of truth for this data and every value passes Ajv validation.
+
+### 6.2 Decision
+
+**Keep the current architecture in Phase 7.** `business.config.json` remains authoritative for both business settings and content-like collections. The reusable content abstraction (`CollectionSource` / `DetailSource` in `src/content/`) is kept as the runtime boundary: templates read through these interfaces and never import configuration/content JSON directly.
+
+No migration is performed in Phase 7 — the reusable package remains client-neutral and the empty template state is valid.
+
+### 6.3 Phase 8 Migration Strategy (documented, deferred)
+
+When a client instance needs `content/` as the live editorial source, the migration path is:
+
+1. Move content-like collections (`locations`, `teamMembers`, `certifications`, `awards`, `memberships`, `clients`, `partners`, `businessMetrics`) into `content/` structured files per `05-content-model-and-content-structure.md`.
+2. Implement `content/` adapters that satisfy `CollectionSource<T>` / `DetailSource<T>` (same contracts used today in `src/content/collection.ts`, `src/content/detail.ts`).
+3. Update `business.config.json` to reference the `content/` source (via `content.source`) instead of holding the records inline.
+4. Keep `business.config.json` settings (`business`, `branding`, `contact`, `businessHours`, `socialMedia`, `legal`, `contentRules`) unchanged.
+5. Update schemas/`SCHEMA-ALIGNMENT.md` if the `business` contract changes.
+
+This is explicitly a Phase 8 / client-instance task; it is not performed on the reusable package in Phase 7.
+
+---
+
+## 7. Phase 7 — `project.config.json` Authority Decision
+
+### 7.1 Findings
+
+`project.config.json` duplicates sections that also exist as dedicated files:
+
+| Section in `project.config.json` | Dedicated authoritative file |
+|---|---|
+| `features` | `features.config.json` |
+| `navigation` | `navigation.config.json` |
+| `contact` | `contact.config.json` |
+| `seo` | `seo.config.json` |
+| `analytics` | `analytics.config.json` |
+| `integrations` | **no dedicated file** — `integrations` lives only in `project.config.json` |
+
+`src/config/load.ts` imports all seven files (`project`, `business`, `features`, `navigation`, `contact`, `seo`, `analytics`) and validates each against its aligned schema.
+
+### 7.2 Decision
+
+- The **seven dedicated `configuration/*.config.json` files remain the authoritative implementation contract**, as stated in the Phase 4 decision (header of this document) and enforced by `src/config/load.ts`.
+- `project.config.json` is the **project overview/record** — it carries instance-level metadata (`project`, `client`, `brand`, `website`, `integrations`, `content`, `design`, `performance`, `security`, `deployment`, `maintenance`, `warranty`, `development`, `projectRules`) and mirrors feature/navigation/contact/seo/analytics for human readability.
+- **No structural change is made in Phase 7.** The smallest safe change is documentation of the authority split; redesigning the config architecture is out of scope (per Phase 7 constraints).
+- `integrations` has no dedicated file and is intentionally not created in Phase 7: integrations are configured under `project.config.json → integrations` and consumed from there. Any doc reference to a standalone `integrations.config` is obsolete (see the fix in `Business package md/AI-DEVELOPMENT-RULES.md` §12).
+
+### 7.3 Consequences
+
+- When editing configuration, change the dedicated file for its domain (e.g., `seo.config.json` for SEO), and update `project.config.json` only when the change also belongs in the project overview record.
+- Schema alignment (§1 resolution rule 11) applies to the dedicated files; `project.config.json` is validated by `project.config.schema.json` for its own sections.
