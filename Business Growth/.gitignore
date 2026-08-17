@@ -1,0 +1,22 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+!.env.example
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Design archives
+*.7z
+*.zip
+
+# Local tool output
+preview.log

@@ -1,0 +1,522 @@
+{
+  "$schema": "./schemas/contact.config.schema.json",
+
+  "contact": {
+    "enabled": true,
+
+    "primaryContact": {
+      "email": "",
+      "phone": "",
+      "whatsapp": ""
+    },
+
+    "channels": {
+      "email": {
+        "enabled": true,
+
+        "address": "",
+
+        "displayLabel": "Email Us",
+
+        "subjectPrefix": "",
+
+        "defaultSubject": "",
+
+        "openInNewTab": false
+      },
+
+      "phone": {
+        "enabled": true,
+
+        "number": "",
+
+        "displayLabel": "Call Us",
+
+        "clickToCall": true
+      },
+
+      "whatsapp": {
+        "enabled": true,
+
+        "number": "",
+
+        "displayLabel": "Chat on WhatsApp",
+
+        "defaultMessage": "Hello, I would like to learn more about your services.",
+
+        "prefillMessage": true
+      },
+
+      "googleMaps": {
+        "enabled": true,
+
+        "url": "",
+
+        "embedUrl": "",
+
+        "showDirections": true
+      },
+
+      "socialMedia": {
+        "enabled": true,
+
+        "platforms": [
+          "facebook",
+          "instagram",
+          "linkedin",
+          "youtube"
+        ]
+      }
+    },
+
+    "contactPage": {
+      "enabled": true,
+
+      "route": "/contact",
+
+      "title": "Contact Us",
+
+      "intro": "",
+
+      "showContactForm": true,
+
+      "showPhone": true,
+
+      "showEmail": true,
+
+      "showWhatsApp": true,
+
+      "showAddress": true,
+
+      "showBusinessHours": true,
+
+      "showMap": true,
+
+      "showSocialMedia": true,
+
+      "showDirections": true
+    }
+  },
+
+  "contactForm": {
+    "enabled": true,
+
+    "formId": "contact-form",
+
+    "title": "Get in Touch",
+
+    "description": "",
+
+    "submitLabel": "Send Message",
+
+    "successMessage": "Thank you. Your message has been received.",
+
+    "errorMessage": "We could not submit your message. Please try again.",
+
+    "loadingMessage": "Sending your message...",
+
+    "fields": [
+      {
+        "id": "fullName",
+        "name": "fullName",
+        "label": "Full Name",
+        "type": "text",
+        "required": true,
+        "enabled": true,
+        "placeholder": "Enter your full name",
+        "autocomplete": "name"
+      },
+
+      {
+        "id": "company",
+        "name": "company",
+        "label": "Company",
+        "type": "text",
+        "required": false,
+        "enabled": true,
+        "placeholder": "Enter your company name",
+        "autocomplete": "organization"
+      },
+
+      {
+        "id": "email",
+        "name": "email",
+        "label": "Email Address",
+        "type": "email",
+        "required": true,
+        "enabled": true,
+        "placeholder": "Enter your email address",
+        "autocomplete": "email"
+      },
+
+      {
+        "id": "phone",
+        "name": "phone",
+        "label": "Phone Number",
+        "type": "tel",
+        "required": false,
+        "enabled": true,
+        "placeholder": "Enter your phone number",
+        "autocomplete": "tel"
+      },
+
+      {
+        "id": "subject",
+        "name": "subject",
+        "label": "Subject",
+        "type": "text",
+        "required": true,
+        "enabled": true,
+        "placeholder": "What can we help you with?"
+      },
+
+      {
+        "id": "message",
+        "name": "message",
+        "label": "Message",
+        "type": "textarea",
+        "required": true,
+        "enabled": true,
+        "placeholder": "Tell us how we can help..."
+      }
+    ],
+
+    "spamProtection": {
+      "enabled": true,
+
+      "honeypot": true,
+
+      "rateLimiting": true,
+
+      "recaptcha": {
+        "enabled": false,
+        "provider": "",
+        "siteKey": ""
+      }
+    },
+
+    "validation": {
+      "clientSide": true,
+      "serverSide": true,
+
+      "trimWhitespace": true,
+
+      "normalizeEmail": true,
+
+      "preventEmptySubmission": true
+    },
+
+    "privacy": {
+      "privacyNoticeEnabled": true,
+
+      "privacyPolicyRequired": true,
+
+      "consentRequired": false,
+
+      "consentText": ""
+    }
+  },
+
+  "rfq": {
+    "enabled": true,
+
+    "route": "/rfq",
+
+    "title": "Request a Quote",
+
+    "intro": "",
+
+    "submitLabel": "Submit Request",
+
+    "successMessage": "Thank you. Your quotation request has been received.",
+
+    "errorMessage": "We could not submit your request. Please try again.",
+
+    "loadingMessage": "Submitting your request...",
+
+    "fields": [
+      {
+        "id": "fullName",
+        "name": "fullName",
+        "label": "Full Name",
+        "type": "text",
+        "required": true,
+        "enabled": true,
+        "autocomplete": "name"
+      },
+
+      {
+        "id": "company",
+        "name": "company",
+        "label": "Company",
+        "type": "text",
+        "required": false,
+        "enabled": true,
+        "autocomplete": "organization"
+      },
+
+      {
+        "id": "email",
+        "name": "email",
+        "label": "Email Address",
+        "type": "email",
+        "required": true,
+        "enabled": true,
+        "autocomplete": "email"
+      },
+
+      {
+        "id": "phone",
+        "name": "phone",
+        "label": "Phone Number",
+        "type": "tel",
+        "required": true,
+        "enabled": true,
+        "autocomplete": "tel"
+      },
+
+      {
+        "id": "service",
+        "name": "service",
+        "label": "Service",
+        "type": "select",
+        "required": false,
+        "enabled": true,
+        "optionsSource": "services"
+      },
+
+      {
+        "id": "product",
+        "name": "product",
+        "label": "Product",
+        "type": "select",
+        "required": false,
+        "enabled": true,
+        "optionsSource": "products"
+      },
+
+      {
+        "id": "quantity",
+        "name": "quantity",
+        "label": "Quantity",
+        "type": "number",
+        "required": false,
+        "enabled": true,
+        "minimum": 1
+      },
+
+      {
+        "id": "budget",
+        "name": "budget",
+        "label": "Estimated Budget",
+        "type": "text",
+        "required": false,
+        "enabled": true
+      },
+
+      {
+        "id": "timeline",
+        "name": "timeline",
+        "label": "Expected Timeline",
+        "type": "select",
+        "required": false,
+        "enabled": true,
+
+        "options": [
+          {
+            "value": "urgent",
+            "label": "Urgent"
+          },
+          {
+            "value": "1-month",
+            "label": "Within 1 Month"
+          },
+          {
+            "value": "1-3-months",
+            "label": "1–3 Months"
+          },
+          {
+            "value": "3-6-months",
+            "label": "3–6 Months"
+          },
+          {
+            "value": "flexible",
+            "label": "Flexible"
+          }
+        ]
+      },
+
+      {
+        "id": "message",
+        "name": "message",
+        "label": "Project / Requirement Details",
+        "type": "textarea",
+        "required": true,
+        "enabled": true
+      },
+
+      {
+        "id": "attachment",
+        "name": "attachment",
+        "label": "Supporting Document",
+        "type": "file",
+        "required": false,
+        "enabled": true,
+
+        "acceptedTypes": [
+          "application/pdf",
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+
+        "maxFileSizeMB": 10,
+
+        "multiple": false
+      }
+    ],
+
+    "spamProtection": {
+      "enabled": true,
+
+      "honeypot": true,
+
+      "rateLimiting": true,
+
+      "recaptcha": {
+        "enabled": false,
+        "provider": "",
+        "siteKey": ""
+      }
+    },
+
+    "validation": {
+      "clientSide": true,
+      "serverSide": true,
+
+      "requiredFieldsMustBeCompleted": true,
+
+      "sanitizeInput": true
+    },
+
+    "privacy": {
+      "privacyNoticeEnabled": true,
+
+      "privacyPolicyRequired": true,
+
+      "consentRequired": false,
+
+      "consentText": ""
+    }
+  },
+
+  "leadRouting": {
+    "enabled": true,
+
+    "contactForm": {
+      "destinationType": "email",
+
+      "destination": "",
+
+      "subject": "New Website Contact Inquiry"
+    },
+
+    "rfq": {
+      "destinationType": "email",
+
+      "destination": "",
+
+      "subject": "New Request for Quote"
+    },
+
+    "notification": {
+      "enabled": true,
+
+      "email": {
+        "enabled": true,
+        "recipients": []
+      },
+
+      "whatsapp": {
+        "enabled": false,
+        "number": ""
+      }
+    }
+  },
+
+  "leadTracking": {
+    "enabled": true,
+
+    "events": {
+      "contactFormStarted": true,
+
+      "contactFormSubmitted": true,
+
+      "contactFormFailed": true,
+
+      "rfqStarted": true,
+
+      "rfqSubmitted": true,
+
+      "rfqFailed": true,
+
+      "phoneClicked": true,
+
+      "emailClicked": true,
+
+      "whatsappClicked": true,
+
+      "mapClicked": true
+    }
+  },
+
+  "callToAction": {
+    "primary": {
+      "enabled": true,
+
+      "label": "Request a Quote",
+
+      "href": "/rfq"
+    },
+
+    "secondary": {
+      "enabled": true,
+
+      "label": "Contact Us",
+
+      "href": "/contact"
+    }
+  },
+
+  "accessibility": {
+    "labelsRequired": true,
+
+    "errorMessagesMustBeAssociatedWithFields": true,
+
+    "keyboardAccessible": true,
+
+    "focusManagement": true,
+
+    "successMessageAnnounced": true,
+
+    "errorMessageAnnounced": true
+  },
+
+  "rules": {
+    "doNotInventContactInformation": true,
+
+    "doNotInventFormRecipients": true,
+
+    "doNotCollectUnapprovedPersonalInformation": true,
+
+    "doNotExposePrivateLeadDataPublicly": true,
+
+    "doNotSendLeadDataToUnapprovedServices": true,
+
+    "validateAllUserInput": true,
+
+    "sanitizeAllSubmittedData": true,
+
+    "respectFeatureConfiguration": true
+  }
+}

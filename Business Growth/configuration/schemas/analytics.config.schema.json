@@ -1,0 +1,506 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "./schemas/analytics.config.schema.json",
+  "title": "Business Growth — Analytics Configuration",
+  "description": "Analytics: environment gating, privacy, GA4, search console, tracking, lead generation events, CTA tracking, content engagement, search, downloads, campaigns, conversion events, event naming, dashboards, business metrics, reporting, debugging, rules. Mirrors configuration/analytics.config.json (authoritative).",
+  "type": "object",
+  "required": ["analytics"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "analytics": {
+      "type": "object",
+      "required": ["enabled", "environment", "privacy", "googleAnalytics", "googleSearchConsole", "tracking", "leadGeneration", "ctaTracking", "contentEngagement", "search", "downloads", "campaigns", "conversionEvents", "eventNaming", "customEvents", "customDimensions", "customMetrics", "dashboards", "businessMetrics", "reporting", "debugging", "rules"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "environment": {
+          "type": "object",
+          "required": ["development", "staging", "production"],
+          "additionalProperties": false,
+          "properties": {
+            "development": { "type": "boolean" },
+            "staging": { "type": "boolean" },
+            "production": { "type": "boolean" }
+          }
+        },
+        "privacy": {
+          "type": "object",
+          "required": ["enabled", "anonymizeIp", "respectDoNotTrack", "cookieConsentRequired", "consentMode", "dataRetention"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "anonymizeIp": { "type": "boolean" },
+            "respectDoNotTrack": { "type": "boolean" },
+            "cookieConsentRequired": { "type": "boolean" },
+            "consentMode": {
+              "type": "object",
+              "required": ["enabled", "defaultAnalyticsStorage", "defaultAdStorage"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "defaultAnalyticsStorage": { "type": "string" },
+                "defaultAdStorage": { "type": "string" }
+              }
+            },
+            "dataRetention": {
+              "type": "object",
+              "required": ["enabled", "periodMonths"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "periodMonths": { "type": "integer", "minimum": 0 }
+              }
+            }
+          }
+        },
+        "googleAnalytics": {
+          "type": "object",
+          "required": ["enabled", "measurementId", "debugMode", "sendPageViews", "enhancedMeasurement", "configuration"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "measurementId": { "type": "string" },
+            "debugMode": { "type": "boolean" },
+            "sendPageViews": { "type": "boolean" },
+            "enhancedMeasurement": { "type": "boolean" },
+            "configuration": {
+              "type": "object",
+              "required": ["anonymizeIp", "allowGoogleSignals", "allowAdPersonalizationSignals"],
+              "additionalProperties": false,
+              "properties": {
+                "anonymizeIp": { "type": "boolean" },
+                "allowGoogleSignals": { "type": "boolean" },
+                "allowAdPersonalizationSignals": { "type": "boolean" }
+              }
+            }
+          }
+        },
+        "googleSearchConsole": {
+          "type": "object",
+          "required": ["enabled", "verificationMethod", "verificationValue", "propertyType"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "verificationMethod": { "type": "string" },
+            "verificationValue": { "type": "string" },
+            "propertyType": { "type": "string" }
+          }
+        },
+        "tracking": {
+          "type": "object",
+          "required": ["pageViews", "scrollDepth", "outboundLinks", "fileDownloads", "videoEngagement"],
+          "additionalProperties": false,
+          "properties": {
+            "pageViews": { "$ref": "#/$defs/toggle" },
+            "scrollDepth": {
+              "type": "object",
+              "required": ["enabled", "thresholds"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "thresholds": { "type": "array", "items": { "type": "integer", "minimum": 0, "maximum": 100 } }
+              }
+            },
+            "outboundLinks": { "$ref": "#/$defs/toggle" },
+            "fileDownloads": { "$ref": "#/$defs/toggle" },
+            "videoEngagement": {
+              "type": "object",
+              "required": ["enabled", "events"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "events": {
+                  "type": "object",
+                  "required": ["start", "progress25", "progress50", "progress75", "complete"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "start": { "type": "boolean" },
+                    "progress25": { "type": "boolean" },
+                    "progress50": { "type": "boolean" },
+                    "progress75": { "type": "boolean" },
+                    "complete": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "leadGeneration": {
+          "type": "object",
+          "required": ["enabled", "contactForm", "rfq", "phone", "email", "whatsapp", "map"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "contactForm": {
+              "type": "object",
+              "required": ["enabled", "events", "conversionEvent"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "events": {
+                  "type": "object",
+                  "required": ["view", "start", "submit", "success", "error"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "view": { "type": "boolean" },
+                    "start": { "type": "boolean" },
+                    "fieldInteraction": { "type": "boolean" },
+                    "submit": { "type": "boolean" },
+                    "success": { "type": "boolean" },
+                    "error": { "type": "boolean" }
+                  }
+                },
+                "conversionEvent": { "type": "string" }
+              }
+            },
+            "rfq": {
+              "type": "object",
+              "required": ["enabled", "events", "conversionEvent"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "events": {
+                  "type": "object",
+                  "required": ["view", "start", "submit", "success", "error"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "view": { "type": "boolean" },
+                    "start": { "type": "boolean" },
+                    "submit": { "type": "boolean" },
+                    "success": { "type": "boolean" },
+                    "error": { "type": "boolean" }
+                  }
+                },
+                "conversionEvent": { "type": "string" }
+              }
+            },
+            "phone": { "$ref": "#/$defs/eventChannel" },
+            "email": { "$ref": "#/$defs/eventChannel" },
+            "whatsapp": { "$ref": "#/$defs/eventChannel" },
+            "map": { "$ref": "#/$defs/eventChannel" }
+          }
+        },
+        "ctaTracking": {
+          "type": "object",
+          "required": ["enabled", "trackAllCtas", "events", "ctaTypes"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "trackAllCtas": { "type": "boolean" },
+            "events": {
+              "type": "object",
+              "required": ["click"],
+              "additionalProperties": false,
+              "properties": {
+                "click": { "type": "boolean" }
+              }
+            },
+            "ctaTypes": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "contentEngagement": {
+          "type": "object",
+          "required": ["enabled", "services", "products", "projects", "blog", "testimonials", "certifications"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "services": { "$ref": "#/$defs/contentSection" },
+            "products": { "$ref": "#/$defs/productContentSection" },
+            "projects": { "$ref": "#/$defs/projectContentSection" },
+            "blog": { "$ref": "#/$defs/blogContentSection" },
+            "testimonials": { "$ref": "#/$defs/simpleContentSection" },
+            "certifications": { "$ref": "#/$defs/simpleContentSection" }
+          }
+        },
+        "search": {
+          "type": "object",
+          "required": ["enabled", "trackSearches", "event"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "trackSearches": { "type": "boolean" },
+            "event": { "type": "string" }
+          }
+        },
+        "downloads": {
+          "type": "object",
+          "required": ["enabled", "trackPdf", "trackBrochures", "trackCatalogs", "trackOtherDocuments", "event"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "trackPdf": { "type": "boolean" },
+            "trackBrochures": { "type": "boolean" },
+            "trackCatalogs": { "type": "boolean" },
+            "trackOtherDocuments": { "type": "boolean" },
+            "event": { "type": "string" }
+          }
+        },
+        "campaigns": {
+          "type": "object",
+          "required": ["enabled", "trackUtmParameters", "parameters"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "trackUtmParameters": { "type": "boolean" },
+            "parameters": {
+              "type": "object",
+              "required": ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"],
+              "additionalProperties": false,
+              "properties": {
+                "utm_source": { "type": "boolean" },
+                "utm_medium": { "type": "boolean" },
+                "utm_campaign": { "type": "boolean" },
+                "utm_term": { "type": "boolean" },
+                "utm_content": { "type": "boolean" }
+              }
+            }
+          }
+        },
+        "conversionEvents": {
+          "type": "object",
+          "required": ["enabled", "events"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "events": {
+              "type": "object",
+              "required": ["generate_lead", "generate_quote", "phone_click", "email_click", "whatsapp_click", "brochure_download", "contact_page_view", "rfq_page_view"],
+              "additionalProperties": false,
+              "properties": {
+                "generate_lead": { "$ref": "#/$defs/conversionEvent" },
+                "generate_quote": { "$ref": "#/$defs/conversionEvent" },
+                "phone_click": { "$ref": "#/$defs/conversionEvent" },
+                "email_click": { "$ref": "#/$defs/conversionEvent" },
+                "whatsapp_click": { "$ref": "#/$defs/conversionEvent" },
+                "brochure_download": { "$ref": "#/$defs/conversionEvent" },
+                "contact_page_view": { "$ref": "#/$defs/conversionEvent" },
+                "rfq_page_view": { "$ref": "#/$defs/conversionEvent" }
+              }
+            }
+          }
+        },
+        "eventNaming": {
+          "type": "object",
+          "required": ["convention", "rules"],
+          "additionalProperties": false,
+          "properties": {
+            "convention": { "type": "string" },
+            "rules": {
+              "type": "object",
+              "required": ["lowercaseOnly", "noSpaces", "descriptiveNames", "consistentNaming"],
+              "additionalProperties": false,
+              "properties": {
+                "lowercaseOnly": { "type": "boolean" },
+                "noSpaces": { "type": "boolean" },
+                "descriptiveNames": { "type": "boolean" },
+                "consistentNaming": { "type": "boolean" }
+              }
+            }
+          }
+        },
+        "customEvents": { "$ref": "#/$defs/customEventList" },
+        "customDimensions": { "$ref": "#/$defs/customDimensionList" },
+        "customMetrics": { "$ref": "#/$defs/customMetricList" },
+        "dashboards": {
+          "type": "object",
+          "required": ["enabled", "recommended"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "recommended": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id", "name", "enabled"],
+                "additionalProperties": false,
+                "properties": {
+                  "id": { "type": "string" },
+                  "name": { "type": "string" },
+                  "enabled": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        },
+        "businessMetrics": {
+          "type": "object",
+          "required": ["enabled", "primary", "secondary"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "primary": { "type": "array", "items": { "type": "string" } },
+            "secondary": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "reporting": {
+          "type": "object",
+          "required": ["enabled", "frequency", "metrics"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "frequency": { "type": "string" },
+            "metrics": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "debugging": {
+          "type": "object",
+          "required": ["enabled", "development", "production"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "development": { "$ref": "#/$defs/debugEnvironment" },
+            "production": { "$ref": "#/$defs/debugEnvironment" }
+          }
+        },
+        "rules": {
+          "type": "object",
+          "required": ["doNotTrackSensitivePersonalInformation", "doNotTrackPasswords", "doNotTrackFormFieldContents", "doNotTrackLeadMessageContents", "doNotTrackUploadedDocuments", "doNotSendPersonallyIdentifiableInformationToAnalytics", "doNotInventMeasurementIds", "doNotInventVerificationCodes", "doNotEnableUnapprovedTrackingServices", "respectPrivacyConfiguration", "respectFeatureConfiguration", "trackBusinessOutcomesOverVanityMetrics"],
+          "additionalProperties": false,
+          "properties": {
+            "doNotTrackSensitivePersonalInformation": { "type": "boolean" },
+            "doNotTrackPasswords": { "type": "boolean" },
+            "doNotTrackFormFieldContents": { "type": "boolean" },
+            "doNotTrackLeadMessageContents": { "type": "boolean" },
+            "doNotTrackUploadedDocuments": { "type": "boolean" },
+            "doNotSendPersonallyIdentifiableInformationToAnalytics": { "type": "boolean" },
+            "doNotInventMeasurementIds": { "type": "boolean" },
+            "doNotInventVerificationCodes": { "type": "boolean" },
+            "doNotEnableUnapprovedTrackingServices": { "type": "boolean" },
+            "respectPrivacyConfiguration": { "type": "boolean" },
+            "respectFeatureConfiguration": { "type": "boolean" },
+            "trackBusinessOutcomesOverVanityMetrics": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "toggle": {
+      "type": "object",
+      "required": ["enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" }
+      }
+    },
+    "eventChannel": {
+      "type": "object",
+      "required": ["enabled", "event"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "event": { "type": "string" }
+      }
+    },
+    "contentSection": {
+      "type": "object",
+      "required": ["view", "detailView", "ctaClick"],
+      "additionalProperties": false,
+      "properties": {
+        "view": { "type": "boolean" },
+        "detailView": { "type": "boolean" },
+        "ctaClick": { "type": "boolean" }
+      }
+    },
+    "productContentSection": {
+      "type": "object",
+      "required": ["view", "categoryView", "detailView", "brochureDownload", "ctaClick"],
+      "additionalProperties": false,
+      "properties": {
+        "view": { "type": "boolean" },
+        "categoryView": { "type": "boolean" },
+        "detailView": { "type": "boolean" },
+        "brochureDownload": { "type": "boolean" },
+        "ctaClick": { "type": "boolean" }
+      }
+    },
+    "projectContentSection": {
+      "type": "object",
+      "required": ["view", "detailView", "galleryInteraction", "videoInteraction"],
+      "additionalProperties": false,
+      "properties": {
+        "view": { "type": "boolean" },
+        "detailView": { "type": "boolean" },
+        "galleryInteraction": { "type": "boolean" },
+        "videoInteraction": { "type": "boolean" }
+      }
+    },
+    "blogContentSection": {
+      "type": "object",
+      "required": ["view", "categoryView", "search"],
+      "additionalProperties": false,
+      "properties": {
+        "view": { "type": "boolean" },
+        "categoryView": { "type": "boolean" },
+        "search": { "type": "boolean" }
+      }
+    },
+    "simpleContentSection": {
+      "type": "object",
+      "required": ["view"],
+      "additionalProperties": false,
+      "properties": {
+        "view": { "type": "boolean" }
+      }
+    },
+    "conversionEvent": {
+      "type": "object",
+      "required": ["enabled", "primary", "category"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "primary": { "type": "boolean" },
+        "category": { "type": "string" }
+      }
+    },
+    "customEvent": {
+      "type": "object",
+      "required": ["name", "description", "enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "enabled": { "type": "boolean" }
+      }
+    },
+    "customEventList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/customEvent" }
+    },
+    "customDimension": {
+      "type": "object",
+      "required": ["name", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "customDimensionList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/customDimension" }
+    },
+    "customMetric": {
+      "type": "object",
+      "required": ["name", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "customMetricList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/customMetric" }
+    },
+    "debugEnvironment": {
+      "type": "object",
+      "required": ["enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" }
+      }
+    }
+  }
+}

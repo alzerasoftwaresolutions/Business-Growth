@@ -1,0 +1,434 @@
+{
+  "$schema": "./schemas/features.config.schema.json",
+
+  "features": {
+
+    "pages": {
+      "home": {
+        "enabled": true
+      },
+
+      "about": {
+        "enabled": true
+      },
+
+      "services": {
+        "enabled": true,
+        "detailPages": true,
+        "categories": true
+      },
+
+      "products": {
+        "enabled": true,
+        "categories": true,
+        "detailPages": true,
+        "technicalSpecifications": true,
+        "brochures": true,
+        "downloads": true
+      },
+
+      "projects": {
+        "enabled": true,
+        "detailPages": true,
+        "categories": true,
+        "gallery": true,
+        "caseStudies": true
+      },
+
+      "testimonials": {
+        "enabled": true
+      },
+
+      "blog": {
+        "enabled": true,
+        "categories": true,
+        "tags": true,
+        "authors": false,
+        "search": false
+      },
+
+      "contact": {
+        "enabled": true
+      },
+
+      "rfq": {
+        "enabled": true
+      },
+
+      "faq": {
+        "enabled": true,
+        "categories": true
+      },
+
+      "team": {
+        "enabled": false
+      },
+
+      "certifications": {
+        "enabled": true
+      },
+
+      "partners": {
+        "enabled": true
+      },
+
+      "locations": {
+        "enabled": false,
+        "multipleLocations": false
+      }
+    },
+
+    "content": {
+
+      "companyProfile": {
+        "enabled": true
+      },
+
+      "leadershipMessage": {
+        "enabled": false
+      },
+
+      "companyTimeline": {
+        "enabled": false
+      },
+
+      "companyStatistics": {
+        "enabled": true
+      },
+
+      "clientLogos": {
+        "enabled": true
+      },
+
+      "partnerLogos": {
+        "enabled": true
+      },
+
+      "certifications": {
+        "enabled": true
+      },
+
+      "awards": {
+        "enabled": true
+      }
+    },
+
+    "leadGeneration": {
+
+      "enabled": true,
+
+      "contactForm": {
+        "enabled": true
+      },
+
+      "rfq": {
+        "enabled": true
+      },
+
+      "callbackRequest": {
+        "enabled": false
+      },
+
+      "newsletter": {
+        "enabled": false
+      },
+
+      "whatsapp": {
+        "enabled": true
+      },
+
+      "clickToCall": {
+        "enabled": true
+      },
+
+      "emailContact": {
+        "enabled": true
+      }
+    },
+
+    "media": {
+
+      "imageGallery": {
+        "enabled": true
+      },
+
+      "lightbox": {
+        "enabled": true
+      },
+
+      "video": {
+        "enabled": true
+      },
+
+      "videoEmbeds": {
+        "enabled": true
+      },
+
+      "documentDownloads": {
+        "enabled": true
+      },
+
+      "pdfViewer": {
+        "enabled": false
+      }
+    },
+
+    "navigation": {
+
+      "stickyHeader": {
+        "enabled": true
+      },
+
+      "mobileNavigation": {
+        "enabled": true
+      },
+
+      "breadcrumbNavigation": {
+        "enabled": true
+      },
+
+      "megaMenu": {
+        "enabled": false
+      },
+
+      "backToTop": {
+        "enabled": true
+      }
+    },
+
+    "search": {
+
+      "enabled": false,
+
+      "globalSearch": {
+        "enabled": false
+      },
+
+      "productSearch": {
+        "enabled": false
+      },
+
+      "serviceSearch": {
+        "enabled": false
+      },
+
+      "projectSearch": {
+        "enabled": false
+      },
+
+      "blogSearch": {
+        "enabled": false
+      }
+    },
+
+    "filtering": {
+
+      "enabled": false,
+
+      "products": {
+        "enabled": false
+      },
+
+      "services": {
+        "enabled": false
+      },
+
+      "projects": {
+        "enabled": false
+      },
+
+      "blog": {
+        "enabled": false
+      }
+    },
+
+    "marketing": {
+
+      "analytics": {
+        "enabled": true
+      },
+
+      "searchConsole": {
+        "enabled": true
+      },
+
+      "socialMedia": {
+        "enabled": true
+      },
+
+      "newsletter": {
+        "enabled": false
+      },
+
+      "campaignLandingPages": {
+        "enabled": false
+      }
+    },
+
+    "trust": {
+
+      "testimonials": {
+        "enabled": true
+      },
+
+      "clientLogos": {
+        "enabled": true
+      },
+
+      "partnerLogos": {
+        "enabled": true
+      },
+
+      "certifications": {
+        "enabled": true
+      },
+
+      "awards": {
+        "enabled": true
+      },
+
+      "statistics": {
+        "enabled": true
+      }
+    },
+
+    "communication": {
+
+      "email": {
+        "enabled": true
+      },
+
+      "phone": {
+        "enabled": true
+      },
+
+      "whatsapp": {
+        "enabled": true
+      },
+
+      "googleMaps": {
+        "enabled": true
+      },
+
+      "socialLinks": {
+        "enabled": true
+      },
+
+      "officeLocations": {
+        "enabled": false
+      }
+    },
+
+    "seo": {
+
+      "enabled": true,
+
+      "metadata": {
+        "enabled": true
+      },
+
+      "sitemap": {
+        "enabled": true
+      },
+
+      "robotsTxt": {
+        "enabled": true
+      },
+
+      "canonicalUrls": {
+        "enabled": true
+      },
+
+      "openGraph": {
+        "enabled": true
+      },
+
+      "structuredData": {
+        "enabled": true
+      },
+
+      "breadcrumbs": {
+        "enabled": true
+      },
+
+      "imageSeo": {
+        "enabled": true
+      }
+    },
+
+    "accessibility": {
+
+      "enabled": true,
+
+      "keyboardNavigation": {
+        "enabled": true
+      },
+
+      "focusStates": {
+        "enabled": true
+      },
+
+      "reducedMotion": {
+        "enabled": true
+      },
+
+      "semanticHtml": {
+        "enabled": true
+      }
+    }
+  },
+
+  "featureDependencies": {
+
+    "rfq": [
+      "contactForm"
+    ],
+
+    "productDetails": [
+      "products"
+    ],
+
+    "productCategories": [
+      "products"
+    ],
+
+    "serviceDetails": [
+      "services"
+    ],
+
+    "projectDetails": [
+      "projects"
+    ],
+
+    "blogCategories": [
+      "blog"
+    ],
+
+    "blogTags": [
+      "blog"
+    ],
+
+    "lightbox": [
+      "imageGallery"
+    ],
+
+    "multipleLocations": [
+      "locations"
+    ]
+  },
+
+  "featureRules": {
+
+    "doNotEnableUnapprovedFeatures": true,
+
+    "doNotCreatePagesForDisabledFeatures": true,
+
+    "doNotCreateNavigationForDisabledPages": true,
+
+    "doNotCreateContentModelsForUnusedFeatures": false,
+
+    "doNotExposeDisabledFeaturesInProduction": true,
+
+    "featureDependenciesMustBeSatisfied": true
+  }
+}

@@ -1,0 +1,562 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "./schemas/project.config.schema.json",
+  "title": "Business Growth — Project Configuration",
+  "description": "Project-level configuration: identity, client metadata, page/feature flags, deployment and rules. Mirrors configuration/project.config.json (authoritative).",
+  "type": "object",
+  "required": [
+    "project",
+    "client",
+    "brand",
+    "website",
+    "features",
+    "navigation",
+    "contact",
+    "seo",
+    "analytics",
+    "integrations",
+    "content",
+    "design",
+    "performance",
+    "security",
+    "deployment",
+    "maintenance",
+    "warranty",
+    "development",
+    "projectRules"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "project": {
+      "type": "object",
+      "required": ["id", "name", "slug", "version", "status", "package", "packageVersion", "createdAt", "updatedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "version": { "type": "string" },
+        "status": { "enum": ["planning", "design", "development", "testing", "staging", "production", "maintenance", "archived"] },
+        "package": { "const": "business-growth" },
+        "packageVersion": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "client": {
+      "type": "object",
+      "required": ["id", "legalName", "displayName", "industry", "businessType", "country", "city", "primaryContact"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "legalName": { "type": "string" },
+        "displayName": { "type": "string" },
+        "industry": { "type": "string" },
+        "businessType": { "type": "string" },
+        "country": { "type": "string" },
+        "city": { "type": "string" },
+        "primaryContact": { "$ref": "#/$defs/contactPerson" }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "required": ["logo", "designSource", "designManualDirectory", "designReferenceDirectory"],
+      "additionalProperties": false,
+      "properties": {
+        "logo": { "$ref": "#/$defs/logo" },
+        "designSource": { "type": "string" },
+        "designManualDirectory": { "type": "string" },
+        "designReferenceDirectory": { "type": "string" }
+      }
+    },
+    "website": {
+      "type": "object",
+      "required": ["domain", "canonicalUrl", "environment", "languages", "pages"],
+      "additionalProperties": false,
+      "properties": {
+        "domain": { "type": "string" },
+        "canonicalUrl": { "type": "string" },
+        "environment": { "enum": ["development", "staging", "production"] },
+        "languages": {
+          "type": "object",
+          "required": ["default", "supported"],
+          "additionalProperties": false,
+          "properties": {
+            "default": { "type": "string" },
+            "supported": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "pages": { "$ref": "#/$defs/pages" }
+      }
+    },
+    "features": {
+      "type": "object",
+      "required": ["productCatalog", "serviceCatalog", "projectPortfolio", "blog", "testimonials", "clientLogos", "partnerLogos", "certifications", "faq", "leadGeneration", "media", "locations", "search"],
+      "additionalProperties": false,
+      "properties": {
+        "productCatalog": { "type": "boolean" },
+        "serviceCatalog": { "type": "boolean" },
+        "projectPortfolio": { "type": "boolean" },
+        "blog": { "type": "boolean" },
+        "testimonials": { "type": "boolean" },
+        "clientLogos": { "type": "boolean" },
+        "partnerLogos": { "type": "boolean" },
+        "certifications": { "type": "boolean" },
+        "faq": { "type": "boolean" },
+        "leadGeneration": {
+          "type": "object",
+          "required": ["enabled", "contactForm", "rfq", "whatsapp", "clickToCall", "email"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "contactForm": { "type": "boolean" },
+            "rfq": { "type": "boolean" },
+            "whatsapp": { "type": "boolean" },
+            "clickToCall": { "type": "boolean" },
+            "email": { "type": "boolean" }
+          }
+        },
+        "media": {
+          "type": "object",
+          "required": ["imageGallery", "lightbox", "video", "downloads"],
+          "additionalProperties": false,
+          "properties": {
+            "imageGallery": { "type": "boolean" },
+            "lightbox": { "type": "boolean" },
+            "video": { "type": "boolean" },
+            "downloads": { "type": "boolean" }
+          }
+        },
+        "locations": {
+          "type": "object",
+          "required": ["enabled", "multipleLocations", "googleMaps"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "multipleLocations": { "type": "boolean" },
+            "googleMaps": { "type": "boolean" }
+          }
+        },
+        "search": {
+          "type": "object",
+          "required": ["enabled", "products", "services", "projects", "blog"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "products": { "type": "boolean" },
+            "services": { "type": "boolean" },
+            "projects": { "type": "boolean" },
+            "blog": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "required": ["header", "footer"],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "required": ["sticky", "primaryNavigation", "cta"],
+          "additionalProperties": false,
+          "properties": {
+            "sticky": { "type": "boolean" },
+            "primaryNavigation": { "type": "array", "items": { "type": "string" } },
+            "cta": {
+              "type": "object",
+              "required": ["enabled", "label", "target"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "label": { "type": "string" },
+                "target": { "type": "string" }
+              }
+            }
+          }
+        },
+        "footer": {
+          "type": "object",
+          "required": ["showQuickLinks", "showServices", "showContact", "showSocialLinks", "showNewsletter"],
+          "additionalProperties": false,
+          "properties": {
+            "showQuickLinks": { "type": "boolean" },
+            "showServices": { "type": "boolean" },
+            "showContact": { "type": "boolean" },
+            "showSocialLinks": { "type": "boolean" },
+            "showNewsletter": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "required": ["email", "phone", "whatsapp", "address", "googleMapsUrl", "businessHours", "social"],
+      "additionalProperties": false,
+      "properties": {
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "address": { "type": "string" },
+        "googleMapsUrl": { "type": "string" },
+        "businessHours": { "type": "array", "items": { "type": "string" } },
+        "social": { "$ref": "#/$defs/socialLinks" }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "required": ["enabled", "siteName", "defaultTitle", "defaultDescription", "defaultImage", "robots", "sitemap", "structuredData"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "siteName": { "type": "string" },
+        "defaultTitle": { "type": "string" },
+        "defaultDescription": { "type": "string" },
+        "defaultImage": { "type": "string" },
+        "robots": {
+          "type": "object",
+          "required": ["index", "follow"],
+          "additionalProperties": false,
+          "properties": {
+            "index": { "type": "boolean" },
+            "follow": { "type": "boolean" }
+          }
+        },
+        "sitemap": {
+          "type": "object",
+          "required": ["enabled"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" }
+          }
+        },
+        "structuredData": {
+          "type": "object",
+          "required": ["organization", "localBusiness", "products", "articles", "breadcrumbs"],
+          "additionalProperties": false,
+          "properties": {
+            "organization": { "type": "boolean" },
+            "localBusiness": { "type": "boolean" },
+            "products": { "type": "boolean" },
+            "articles": { "type": "boolean" },
+            "breadcrumbs": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "analytics": {
+      "type": "object",
+      "required": ["enabled", "googleAnalytics", "googleSearchConsole"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "googleAnalytics": {
+          "type": "object",
+          "required": ["enabled", "measurementId"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "measurementId": { "type": "string" }
+          }
+        },
+        "googleSearchConsole": {
+          "type": "object",
+          "required": ["enabled", "verificationMethod", "verificationValue"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "verificationMethod": { "type": "string" },
+            "verificationValue": { "type": "string" }
+          }
+        }
+      }
+    },
+    "integrations": {
+      "type": "object",
+      "required": ["whatsapp", "googleMaps", "email", "recaptcha"],
+      "additionalProperties": false,
+      "properties": {
+        "whatsapp": {
+          "type": "object",
+          "required": ["enabled", "number"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "number": { "type": "string" }
+          }
+        },
+        "googleMaps": {
+          "type": "object",
+          "required": ["enabled", "embedUrl"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "embedUrl": { "type": "string" }
+          }
+        },
+        "email": {
+          "type": "object",
+          "required": ["provider", "destination"],
+          "additionalProperties": false,
+          "properties": {
+            "provider": { "type": "string" },
+            "destination": { "type": "string" }
+          }
+        },
+        "recaptcha": {
+          "type": "object",
+          "required": ["enabled"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "required": ["source", "directories", "clientContentRequired", "placeholderContentAllowed"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "type": "string" },
+        "directories": {
+          "type": "object",
+          "required": ["content", "assets", "documents", "images", "videos"],
+          "additionalProperties": false,
+          "properties": {
+            "content": { "type": "string" },
+            "assets": { "type": "string" },
+            "documents": { "type": "string" },
+            "images": { "type": "string" },
+            "videos": { "type": "string" }
+          }
+        },
+        "clientContentRequired": { "type": "boolean" },
+        "placeholderContentAllowed": { "type": "boolean" }
+      }
+    },
+    "design": {
+      "type": "object",
+      "required": ["sourceOfTruth", "directories", "rules"],
+      "additionalProperties": false,
+      "properties": {
+        "sourceOfTruth": { "type": "string" },
+        "directories": {
+          "type": "object",
+          "required": ["root", "pages", "references"],
+          "additionalProperties": false,
+          "properties": {
+            "root": { "type": "string" },
+            "pages": { "type": "string" },
+            "references": { "type": "string" }
+          }
+        },
+        "rules": {
+          "type": "object",
+          "required": ["followApprovedDesign", "inventNewVisualDesign", "modifyApprovedLayoutWithoutApproval", "usePlaceholderVisualsInProduction"],
+          "additionalProperties": false,
+          "properties": {
+            "followApprovedDesign": { "type": "boolean" },
+            "inventNewVisualDesign": { "type": "boolean" },
+            "modifyApprovedLayoutWithoutApproval": { "type": "boolean" },
+            "usePlaceholderVisualsInProduction": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "required": ["imageOptimization", "lazyLoading", "codeSplitting", "fontOptimization", "assetOptimization"],
+      "additionalProperties": false,
+      "properties": {
+        "imageOptimization": { "type": "boolean" },
+        "lazyLoading": { "type": "boolean" },
+        "codeSplitting": { "type": "boolean" },
+        "fontOptimization": { "type": "boolean" },
+        "assetOptimization": { "type": "boolean" }
+      }
+    },
+    "security": {
+      "type": "object",
+      "required": ["httpsRequired", "secureForms", "inputValidation", "securityHeaders"],
+      "additionalProperties": false,
+      "properties": {
+        "httpsRequired": { "type": "boolean" },
+        "secureForms": { "type": "boolean" },
+        "inputValidation": { "type": "boolean" },
+        "securityHeaders": { "type": "boolean" }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "required": ["provider", "frontend", "backend", "database", "environments"],
+      "additionalProperties": false,
+      "properties": {
+        "provider": { "type": "string" },
+        "frontend": { "type": "string" },
+        "backend": { "type": "string" },
+        "database": { "type": "string" },
+        "environments": {
+          "type": "object",
+          "required": ["development", "staging", "production"],
+          "additionalProperties": false,
+          "properties": {
+            "development": { "type": "boolean" },
+            "staging": { "type": "boolean" },
+            "production": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "maintenance": {
+      "type": "object",
+      "required": ["plan", "monitoring", "backups", "securityUpdates", "contentUpdates"],
+      "additionalProperties": false,
+      "properties": {
+        "plan": { "type": "string" },
+        "monitoring": { "type": "boolean" },
+        "backups": { "type": "boolean" },
+        "securityUpdates": { "type": "boolean" },
+        "contentUpdates": { "type": "boolean" }
+      }
+    },
+    "warranty": {
+      "type": "object",
+      "required": ["enabled", "durationDays"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "durationDays": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "development": {
+      "type": "object",
+      "required": ["frontend", "backend", "database", "versionControl"],
+      "additionalProperties": false,
+      "properties": {
+        "frontend": {
+          "type": "object",
+          "required": ["framework", "buildTool", "styling"],
+          "additionalProperties": false,
+          "properties": {
+            "framework": { "type": "string" },
+            "buildTool": { "type": "string" },
+            "styling": { "type": "string" }
+          }
+        },
+        "backend": {
+          "type": "object",
+          "required": ["enabled", "runtime", "framework"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "runtime": { "type": "string" },
+            "framework": { "type": "string" }
+          }
+        },
+        "database": {
+          "type": "object",
+          "required": ["enabled", "type"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "type": { "type": "string" }
+          }
+        },
+        "versionControl": {
+          "type": "object",
+          "required": ["provider", "repository"],
+          "additionalProperties": false,
+          "properties": {
+            "provider": { "type": "string" },
+            "repository": { "type": "string" }
+          }
+        }
+      }
+    },
+    "projectRules": {
+      "type": "object",
+      "required": [
+        "doNotInventClientInformation",
+        "doNotInventDesign",
+        "doNotAddUnapprovedFeatures",
+        "doNotExpandScopeAutomatically",
+        "doNotUsePlaceholderContentInProduction",
+        "followPackageStandards",
+        "followClientDesignManual"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "doNotInventClientInformation": { "type": "boolean" },
+        "doNotInventDesign": { "type": "boolean" },
+        "doNotAddUnapprovedFeatures": { "type": "boolean" },
+        "doNotExpandScopeAutomatically": { "type": "boolean" },
+        "doNotUsePlaceholderContentInProduction": { "type": "boolean" },
+        "followPackageStandards": { "type": "boolean" },
+        "followClientDesignManual": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "contactPerson": {
+      "type": "object",
+      "required": ["name", "role", "email", "phone"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" }
+      }
+    },
+    "logo": {
+      "type": "object",
+      "required": ["primary", "secondary", "favicon"],
+      "additionalProperties": false,
+      "properties": {
+        "primary": { "type": "string" },
+        "secondary": { "type": "string" },
+        "favicon": { "type": "string" }
+      }
+    },
+    "socialLinks": {
+      "type": "object",
+      "required": ["facebook", "instagram", "linkedin", "youtube", "tiktok", "x"],
+      "additionalProperties": false,
+      "properties": {
+        "facebook": { "type": "string" },
+        "instagram": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "youtube": { "type": "string" },
+        "tiktok": { "type": "string" },
+        "x": { "type": "string" }
+      }
+    },
+    "pages": {
+      "type": "object",
+      "required": ["home", "about", "services", "serviceDetails", "products", "productCategories", "productDetails", "projects", "projectDetails", "testimonials", "blog", "contact", "rfq", "faq", "team", "certifications", "partners", "locations"],
+      "additionalProperties": false,
+      "properties": {
+        "home": { "type": "boolean" },
+        "about": { "type": "boolean" },
+        "services": { "type": "boolean" },
+        "serviceDetails": { "type": "boolean" },
+        "products": { "type": "boolean" },
+        "productCategories": { "type": "boolean" },
+        "productDetails": { "type": "boolean" },
+        "projects": { "type": "boolean" },
+        "projectDetails": { "type": "boolean" },
+        "testimonials": { "type": "boolean" },
+        "blog": { "type": "boolean" },
+        "contact": { "type": "boolean" },
+        "rfq": { "type": "boolean" },
+        "faq": { "type": "boolean" },
+        "team": { "type": "boolean" },
+        "certifications": { "type": "boolean" },
+        "partners": { "type": "boolean" },
+        "locations": { "type": "boolean" }
+      }
+    }
+  }
+}

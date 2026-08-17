@@ -1,0 +1,321 @@
+{
+  "$schema": "./schemas/project.config.schema.json",
+
+  "project": {
+    "id": "",
+    "name": "",
+    "slug": "",
+    "version": "1.0.0",
+    "status": "development",
+    "package": "business-growth",
+    "packageVersion": "1.0",
+    "createdAt": "",
+    "updatedAt": ""
+  },
+
+  "client": {
+    "id": "",
+    "legalName": "",
+    "displayName": "",
+    "industry": "",
+    "businessType": "",
+    "country": "",
+    "city": "",
+    "primaryContact": {
+      "name": "",
+      "role": "",
+      "email": "",
+      "phone": ""
+    }
+  },
+
+  "brand": {
+    "logo": {
+      "primary": "",
+      "secondary": "",
+      "favicon": ""
+    },
+    "designSource": "client-design",
+    "designManualDirectory": "./design/pages/",
+    "designReferenceDirectory": "./design/reference/"
+  },
+
+  "website": {
+    "domain": "",
+    "canonicalUrl": "",
+    "environment": "development",
+
+    "languages": {
+      "default": "en",
+      "supported": ["en"]
+    },
+
+    "pages": {
+      "home": true,
+      "about": true,
+      "services": true,
+      "serviceDetails": true,
+      "products": true,
+      "productCategories": true,
+      "productDetails": true,
+      "projects": true,
+      "projectDetails": true,
+      "testimonials": true,
+      "blog": true,
+      "contact": true,
+      "rfq": true,
+      "faq": true,
+      "team": false,
+      "certifications": false,
+      "partners": false,
+      "locations": false
+    }
+  },
+
+  "features": {
+    "productCatalog": true,
+    "serviceCatalog": true,
+    "projectPortfolio": true,
+    "blog": true,
+    "testimonials": true,
+    "clientLogos": true,
+    "partnerLogos": true,
+    "certifications": true,
+    "faq": true,
+
+    "leadGeneration": {
+      "enabled": true,
+      "contactForm": true,
+      "rfq": true,
+      "whatsapp": true,
+      "clickToCall": true,
+      "email": true
+    },
+
+    "media": {
+      "imageGallery": true,
+      "lightbox": true,
+      "video": true,
+      "downloads": true
+    },
+
+    "locations": {
+      "enabled": false,
+      "multipleLocations": false,
+      "googleMaps": true
+    },
+
+    "search": {
+      "enabled": false,
+      "products": false,
+      "services": false,
+      "projects": false,
+      "blog": false
+    }
+  },
+
+  "navigation": {
+    "header": {
+      "sticky": true,
+      "primaryNavigation": [],
+      "cta": {
+        "enabled": true,
+        "label": "Request a Quote",
+        "target": "/rfq"
+      }
+    },
+
+    "footer": {
+      "showQuickLinks": true,
+      "showServices": true,
+      "showContact": true,
+      "showSocialLinks": true,
+      "showNewsletter": false
+    }
+  },
+
+  "contact": {
+    "email": "",
+    "phone": "",
+    "whatsapp": "",
+    "address": "",
+    "googleMapsUrl": "",
+    "businessHours": [],
+
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "linkedin": "",
+      "youtube": "",
+      "tiktok": "",
+      "x": ""
+    }
+  },
+
+  "seo": {
+    "enabled": true,
+    "siteName": "",
+    "defaultTitle": "",
+    "defaultDescription": "",
+    "defaultImage": "",
+    "robots": {
+      "index": true,
+      "follow": true
+    },
+
+    "sitemap": {
+      "enabled": true
+    },
+
+    "structuredData": {
+      "organization": true,
+      "localBusiness": false,
+      "products": false,
+      "articles": false,
+      "breadcrumbs": true
+    }
+  },
+
+  "analytics": {
+    "enabled": true,
+
+    "googleAnalytics": {
+      "enabled": false,
+      "measurementId": ""
+    },
+
+    "googleSearchConsole": {
+      "enabled": false,
+      "verificationMethod": "",
+      "verificationValue": ""
+    }
+  },
+
+  "integrations": {
+    "whatsapp": {
+      "enabled": true,
+      "number": ""
+    },
+
+    "googleMaps": {
+      "enabled": true,
+      "embedUrl": ""
+    },
+
+    "email": {
+      "provider": "",
+      "destination": ""
+    },
+
+    "recaptcha": {
+      "enabled": false
+    }
+  },
+
+  "content": {
+    "source": "client-provided",
+
+    "directories": {
+      "content": "./content/",
+      "assets": "./assets/",
+      "documents": "./assets/documents/",
+      "images": "./assets/images/",
+      "videos": "./assets/videos/"
+    },
+
+    "clientContentRequired": true,
+    "placeholderContentAllowed": false
+  },
+
+  "design": {
+    "sourceOfTruth": "client-design-manual",
+
+    "directories": {
+      "root": "./design/",
+      "pages": "./design/pages/",
+      "references": "./design/reference/"
+    },
+
+    "rules": {
+      "followApprovedDesign": true,
+      "inventNewVisualDesign": false,
+      "modifyApprovedLayoutWithoutApproval": false,
+      "usePlaceholderVisualsInProduction": false
+    }
+  },
+
+  "performance": {
+    "imageOptimization": true,
+    "lazyLoading": true,
+    "codeSplitting": true,
+    "fontOptimization": true,
+    "assetOptimization": true
+  },
+
+  "security": {
+    "httpsRequired": true,
+    "secureForms": true,
+    "inputValidation": true,
+    "securityHeaders": true
+  },
+
+  "deployment": {
+    "provider": "",
+    "frontend": "",
+    "backend": "",
+    "database": "",
+
+    "environments": {
+      "development": true,
+      "staging": false,
+      "production": true
+    }
+  },
+
+  "maintenance": {
+    "plan": "none",
+    "monitoring": false,
+    "backups": false,
+    "securityUpdates": false,
+    "contentUpdates": false
+  },
+
+  "warranty": {
+    "enabled": true,
+    "durationDays": 30
+  },
+
+  "development": {
+    "frontend": {
+      "framework": "React",
+      "buildTool": "Vite",
+      "styling": "Tailwind CSS"
+    },
+
+    "backend": {
+      "enabled": false,
+      "runtime": "Node.js",
+      "framework": "Express.js"
+    },
+
+    "database": {
+      "enabled": false,
+      "type": "PostgreSQL"
+    },
+
+    "versionControl": {
+      "provider": "GitHub",
+      "repository": ""
+    }
+  },
+
+  "projectRules": {
+    "doNotInventClientInformation": true,
+    "doNotInventDesign": true,
+    "doNotAddUnapprovedFeatures": true,
+    "doNotExpandScopeAutomatically": true,
+    "doNotUsePlaceholderContentInProduction": true,
+    "followPackageStandards": true,
+    "followClientDesignManual": true
+  }
+}

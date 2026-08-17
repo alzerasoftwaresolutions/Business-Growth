@@ -1,0 +1,598 @@
+{
+  "$schema": "./schemas/seo.config.schema.json",
+
+  "seo": {
+    "enabled": true,
+
+    "site": {
+      "name": "",
+      "legalName": "",
+      "url": "",
+      "canonicalUrl": "",
+      "defaultLanguage": "en",
+
+      "defaultTitle": "",
+      "titleTemplate": "%s | ",
+      "defaultDescription": "",
+
+      "defaultKeywords": [],
+
+      "defaultImage": "",
+
+      "favicon": "",
+
+      "themeColor": ""
+    },
+
+    "indexing": {
+      "allowIndexing": true,
+      "allowFollowing": true,
+
+      "environmentRules": {
+        "development": {
+          "index": false,
+          "follow": false
+        },
+
+        "staging": {
+          "index": false,
+          "follow": false
+        },
+
+        "production": {
+          "index": true,
+          "follow": true
+        }
+      }
+    },
+
+    "robots": {
+      "enabled": true,
+
+      "default": {
+        "index": true,
+        "follow": true
+      },
+
+      "disallow": [
+        "/api/",
+        "/admin/",
+        "/private/",
+        "/thank-you/"
+      ],
+
+      "allow": [],
+
+      "sitemap": ""
+    },
+
+    "sitemap": {
+      "enabled": true,
+
+      "url": "",
+
+      "include": {
+        "pages": true,
+        "services": true,
+        "serviceDetails": true,
+        "products": true,
+        "productCategories": true,
+        "productDetails": true,
+        "projects": true,
+        "projectDetails": true,
+        "blog": true,
+        "blogPosts": true,
+        "faq": true,
+        "team": false,
+        "certifications": false,
+        "locations": false
+      },
+
+      "exclude": [
+        "/404",
+        "/thank-you"
+      ],
+
+      "changeFrequency": {
+        "pages": "monthly",
+        "services": "monthly",
+        "products": "monthly",
+        "projects": "monthly",
+        "blog": "weekly"
+      }
+    },
+
+    "canonical": {
+      "enabled": true,
+
+      "baseUrl": "",
+
+      "trailingSlash": false,
+
+      "forceHttps": true
+    },
+
+    "metadata": {
+      "enabled": true,
+
+      "defaults": {
+        "title": "",
+        "description": "",
+        "image": "",
+        "type": "website"
+      },
+
+      "pages": {
+        "home": {
+          "title": "",
+          "description": "",
+          "keywords": [],
+          "image": "",
+          "robots": {
+            "index": true,
+            "follow": true
+          }
+        },
+
+        "about": {
+          "title": "",
+          "description": "",
+          "keywords": [],
+          "image": "",
+          "robots": {
+            "index": true,
+            "follow": true
+          }
+        },
+
+        "services": {
+          "title": "",
+          "description": "",
+          "keywords": [],
+          "image": "",
+          "robots": {
+            "index": true,
+            "follow": true
+          }
+        },
+
+        "products": {
+          "title": "",
+          "description": "",
+          "keywords": [],
+          "image": "",
+          "robots": {
+            "index": true,
+            "follow": true
+          }
+        },
+
+        "projects": {
+          "title": "",
+          "description": "",
+          "keywords": [],
+          "image": "",
+          "robots": {
+            "index": true,
+            "follow": true
+          }
+        },
+
+        "testimonials": {
+          "title": "",
+          "description": "",
+          "keywords": [],
+          "image": "",
+          "robots": {
+            "index": true,
+            "follow": true
+          }
+        },
+
+        "blog": {
+          "title": "",
+          "description": "",
+          "keywords": [],
+          "image": "",
+          "robots": {
+            "index": true,
+            "follow": true
+          }
+        },
+
+        "contact": {
+          "title": "",
+          "description": "",
+          "keywords": [],
+          "image": "",
+          "robots": {
+            "index": true,
+            "follow": true
+          }
+        },
+
+        "rfq": {
+          "title": "",
+          "description": "",
+          "keywords": [],
+          "image": "",
+          "robots": {
+            "index": false,
+            "follow": true
+          }
+        },
+
+        "faq": {
+          "title": "",
+          "description": "",
+          "keywords": [],
+          "image": "",
+          "robots": {
+            "index": true,
+            "follow": true
+          }
+        }
+      }
+    },
+
+    "openGraph": {
+      "enabled": true,
+
+      "type": "website",
+
+      "siteName": "",
+
+      "defaultImage": "",
+
+      "locale": "en_US",
+
+      "pages": {
+        "home": {
+          "title": "",
+          "description": "",
+          "image": ""
+        },
+
+        "about": {
+          "title": "",
+          "description": "",
+          "image": ""
+        },
+
+        "services": {
+          "title": "",
+          "description": "",
+          "image": ""
+        },
+
+        "products": {
+          "title": "",
+          "description": "",
+          "image": ""
+        },
+
+        "projects": {
+          "title": "",
+          "description": "",
+          "image": ""
+        },
+
+        "blog": {
+          "title": "",
+          "description": "",
+          "image": ""
+        },
+
+        "contact": {
+          "title": "",
+          "description": "",
+          "image": ""
+        }
+      }
+    },
+
+    "twitter": {
+      "enabled": true,
+
+      "card": "summary_large_image",
+
+      "site": "",
+
+      "creator": "",
+
+      "defaultImage": ""
+    },
+
+    "structuredData": {
+      "enabled": true,
+
+      "organization": {
+        "enabled": true,
+
+        "type": "Organization",
+
+        "name": "",
+
+        "url": "",
+
+        "logo": "",
+
+        "description": "",
+
+        "telephone": "",
+
+        "email": "",
+
+        "sameAs": []
+      },
+
+      "localBusiness": {
+        "enabled": false,
+
+        "type": "LocalBusiness",
+
+        "name": "",
+
+        "description": "",
+
+        "url": "",
+
+        "logo": "",
+
+        "telephone": "",
+
+        "email": "",
+
+        "priceRange": "",
+
+        "address": {
+          "street": "",
+          "city": "",
+          "region": "",
+          "postalCode": "",
+          "country": ""
+        },
+
+        "geo": {
+          "latitude": null,
+          "longitude": null
+        },
+
+        "openingHours": [],
+
+        "sameAs": []
+      },
+
+      "services": {
+        "enabled": true,
+
+        "type": "Service",
+
+        "includeProvider": true
+      },
+
+      "products": {
+        "enabled": true,
+
+        "type": "Product",
+
+        "includeBrand": true,
+
+        "includeOffers": false
+      },
+
+      "projects": {
+        "enabled": true,
+
+        "type": "CreativeWork"
+      },
+
+      "articles": {
+        "enabled": true,
+
+        "type": "Article",
+
+        "includeAuthor": false,
+
+        "includePublisher": true
+      },
+
+      "breadcrumbs": {
+        "enabled": true
+      },
+
+      "faq": {
+        "enabled": true
+      }
+    },
+
+    "breadcrumbs": {
+      "enabled": true,
+
+      "homeLabel": "Home",
+
+      "separator": "/"
+    },
+
+    "images": {
+      "enabled": true,
+
+      "defaultAltText": "",
+
+      "requireAltText": true,
+
+      "allowEmptyAltTextForDecorativeImages": true,
+
+      "socialImage": {
+        "width": 1200,
+        "height": 630
+      }
+    },
+
+    "urls": {
+      "format": "clean",
+
+      "lowercase": true,
+
+      "removeTrailingSlash": true,
+
+      "removeFileExtensions": true,
+
+      "allowedCharacters": "a-z0-9-hyphen",
+
+      "rules": {
+        "services": "/services",
+        "serviceDetails": "/services/{slug}",
+        "products": "/products",
+        "productCategories": "/products/category/{slug}",
+        "productDetails": "/products/{slug}",
+        "projects": "/projects",
+        "projectDetails": "/projects/{slug}",
+        "blog": "/blog",
+        "blogPosts": "/blog/{slug}",
+        "faq": "/faq",
+        "contact": "/contact",
+        "rfq": "/rfq"
+      }
+    },
+
+    "pagination": {
+      "enabled": true,
+
+      "canonicalStrategy": "self",
+
+      "noindexPaginatedPages": false
+    },
+
+    "redirects": {
+      "enabled": true,
+
+      "rules": []
+    },
+
+    "searchEngineVerification": {
+      "google": {
+        "enabled": false,
+        "method": "",
+        "value": ""
+      },
+
+      "bing": {
+        "enabled": false,
+        "method": "",
+        "value": ""
+      }
+    },
+
+    "localSeo": {
+      "enabled": false,
+
+      "businessName": "",
+
+      "primaryLocation": "",
+
+      "serviceAreas": [],
+
+      "localKeywords": [],
+
+      "googleBusinessProfile": {
+        "enabled": false,
+        "url": ""
+      }
+    },
+
+    "internationalSeo": {
+      "enabled": false,
+
+      "supportedLanguages": [
+        "en"
+      ],
+
+      "defaultLanguage": "en",
+
+      "hreflang": {
+        "enabled": false
+      }
+    },
+
+    "contentSeo": {
+      "enabled": true,
+
+      "requireUniquePageTitles": true,
+
+      "requireUniqueMetaDescriptions": true,
+
+      "requireLogicalHeadingHierarchy": true,
+
+      "requireDescriptiveUrls": true,
+
+      "requireDescriptiveLinkText": true,
+
+      "requireImageAltText": true,
+
+      "avoidKeywordStuffing": true,
+
+      "avoidDuplicateContent": true
+    },
+
+    "performanceSeo": {
+      "enabled": true,
+
+      "optimizeImages": true,
+
+      "lazyLoadImages": true,
+
+      "preloadCriticalAssets": true,
+
+      "optimizeFonts": true,
+
+      "minimizeBlockingResources": true
+    },
+
+    "analyticsIntegration": {
+      "googleAnalytics": {
+        "enabled": true,
+        "measurementId": ""
+      },
+
+      "googleSearchConsole": {
+        "enabled": true,
+        "verificationValue": ""
+      }
+    }
+  },
+
+  "pageSeoOverrides": [],
+
+  "seoRules": {
+    "clientProvidedSeoDataIsAuthoritative": true,
+
+    "doNotInventBusinessKeywords": true,
+
+    "doNotInventBusinessClaims": true,
+
+    "doNotInventLocations": true,
+
+    "doNotInventCertifications": true,
+
+    "doNotInventStatistics": true,
+
+    "doNotCreateDuplicateMetadata": true,
+
+    "doNotIndexDevelopmentEnvironment": true,
+
+    "doNotIndexStagingEnvironment": true,
+
+    "productionMustHaveCanonicalUrls": true,
+
+    "productionMustHaveSitemap": true,
+
+    "productionMustHaveRobotsTxt": true,
+
+    "productionMustHaveValidMetadata": true,
+
+    "productionMustHaveStructuredDataWhereApplicable": true,
+
+    "respectFeatureConfiguration": true
+  }
+}

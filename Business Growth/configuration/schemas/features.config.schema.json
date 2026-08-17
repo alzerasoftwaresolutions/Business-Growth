@@ -1,0 +1,294 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "./schemas/features.config.schema.json",
+  "title": "Business Growth — Features Configuration",
+  "description": "Feature enablement: pages, content sections, lead generation, media, navigation, search, filtering, marketing, trust, communication, SEO, accessibility, plus dependencies and rules. Mirrors configuration/features.config.json (authoritative).",
+  "type": "object",
+  "required": ["features", "featureDependencies", "featureRules"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "features": {
+      "type": "object",
+      "required": ["pages", "content", "leadGeneration", "media", "navigation", "search", "filtering", "marketing", "trust", "communication", "seo", "accessibility"],
+      "additionalProperties": false,
+      "properties": {
+        "pages": {
+          "type": "object",
+          "required": ["home", "about", "services", "products", "projects", "testimonials", "blog", "contact", "rfq", "faq", "team", "certifications", "partners", "locations"],
+          "additionalProperties": false,
+          "properties": {
+            "home": { "$ref": "#/$defs/toggle" },
+            "about": { "$ref": "#/$defs/toggle" },
+            "services": { "$ref": "#/$defs/servicePage" },
+            "products": { "$ref": "#/$defs/productPage" },
+            "projects": { "$ref": "#/$defs/projectPage" },
+            "testimonials": { "$ref": "#/$defs/toggle" },
+            "blog": { "$ref": "#/$defs/blogPage" },
+            "contact": { "$ref": "#/$defs/toggle" },
+            "rfq": { "$ref": "#/$defs/toggle" },
+            "faq": { "$ref": "#/$defs/faqPage" },
+            "team": { "$ref": "#/$defs/toggle" },
+            "certifications": { "$ref": "#/$defs/toggle" },
+            "partners": { "$ref": "#/$defs/toggle" },
+            "locations": { "$ref": "#/$defs/locationsPage" }
+          }
+        },
+        "content": {
+          "type": "object",
+          "required": ["companyProfile", "leadershipMessage", "companyTimeline", "companyStatistics", "clientLogos", "partnerLogos", "certifications", "awards"],
+          "additionalProperties": false,
+          "properties": {
+            "companyProfile": { "$ref": "#/$defs/toggle" },
+            "leadershipMessage": { "$ref": "#/$defs/toggle" },
+            "companyTimeline": { "$ref": "#/$defs/toggle" },
+            "companyStatistics": { "$ref": "#/$defs/toggle" },
+            "clientLogos": { "$ref": "#/$defs/toggle" },
+            "partnerLogos": { "$ref": "#/$defs/toggle" },
+            "certifications": { "$ref": "#/$defs/toggle" },
+            "awards": { "$ref": "#/$defs/toggle" }
+          }
+        },
+        "leadGeneration": {
+          "type": "object",
+          "required": ["enabled", "contactForm", "rfq", "callbackRequest", "newsletter", "whatsapp", "clickToCall", "emailContact"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "contactForm": { "$ref": "#/$defs/toggle" },
+            "rfq": { "$ref": "#/$defs/toggle" },
+            "callbackRequest": { "$ref": "#/$defs/toggle" },
+            "newsletter": { "$ref": "#/$defs/toggle" },
+            "whatsapp": { "$ref": "#/$defs/toggle" },
+            "clickToCall": { "$ref": "#/$defs/toggle" },
+            "emailContact": { "$ref": "#/$defs/toggle" }
+          }
+        },
+        "media": {
+          "type": "object",
+          "required": ["imageGallery", "lightbox", "video", "videoEmbeds", "documentDownloads", "pdfViewer"],
+          "additionalProperties": false,
+          "properties": {
+            "imageGallery": { "$ref": "#/$defs/toggle" },
+            "lightbox": { "$ref": "#/$defs/toggle" },
+            "video": { "$ref": "#/$defs/toggle" },
+            "videoEmbeds": { "$ref": "#/$defs/toggle" },
+            "documentDownloads": { "$ref": "#/$defs/toggle" },
+            "pdfViewer": { "$ref": "#/$defs/toggle" }
+          }
+        },
+        "navigation": {
+          "type": "object",
+          "required": ["stickyHeader", "mobileNavigation", "breadcrumbNavigation", "megaMenu", "backToTop"],
+          "additionalProperties": false,
+          "properties": {
+            "stickyHeader": { "$ref": "#/$defs/toggle" },
+            "mobileNavigation": { "$ref": "#/$defs/toggle" },
+            "breadcrumbNavigation": { "$ref": "#/$defs/toggle" },
+            "megaMenu": { "$ref": "#/$defs/toggle" },
+            "backToTop": { "$ref": "#/$defs/toggle" }
+          }
+        },
+        "search": {
+          "type": "object",
+          "required": ["enabled", "globalSearch", "productSearch", "serviceSearch", "projectSearch", "blogSearch"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "globalSearch": { "$ref": "#/$defs/toggle" },
+            "productSearch": { "$ref": "#/$defs/toggle" },
+            "serviceSearch": { "$ref": "#/$defs/toggle" },
+            "projectSearch": { "$ref": "#/$defs/toggle" },
+            "blogSearch": { "$ref": "#/$defs/toggle" }
+          }
+        },
+        "filtering": {
+          "type": "object",
+          "required": ["enabled", "products", "services", "projects", "blog"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "products": { "$ref": "#/$defs/toggle" },
+            "services": { "$ref": "#/$defs/toggle" },
+            "projects": { "$ref": "#/$defs/toggle" },
+            "blog": { "$ref": "#/$defs/toggle" }
+          }
+        },
+        "marketing": {
+          "type": "object",
+          "required": ["analytics", "searchConsole", "socialMedia", "newsletter", "campaignLandingPages"],
+          "additionalProperties": false,
+          "properties": {
+            "analytics": { "$ref": "#/$defs/toggle" },
+            "searchConsole": { "$ref": "#/$defs/toggle" },
+            "socialMedia": { "$ref": "#/$defs/toggle" },
+            "newsletter": { "$ref": "#/$defs/toggle" },
+            "campaignLandingPages": { "$ref": "#/$defs/toggle" }
+          }
+        },
+        "trust": {
+          "type": "object",
+          "required": ["testimonials", "clientLogos", "partnerLogos", "certifications", "awards", "statistics"],
+          "additionalProperties": false,
+          "properties": {
+            "testimonials": { "$ref": "#/$defs/toggle" },
+            "clientLogos": { "$ref": "#/$defs/toggle" },
+            "partnerLogos": { "$ref": "#/$defs/toggle" },
+            "certifications": { "$ref": "#/$defs/toggle" },
+            "awards": { "$ref": "#/$defs/toggle" },
+            "statistics": { "$ref": "#/$defs/toggle" }
+          }
+        },
+        "communication": {
+          "type": "object",
+          "required": ["email", "phone", "whatsapp", "googleMaps", "socialLinks", "officeLocations"],
+          "additionalProperties": false,
+          "properties": {
+            "email": { "$ref": "#/$defs/toggle" },
+            "phone": { "$ref": "#/$defs/toggle" },
+            "whatsapp": { "$ref": "#/$defs/toggle" },
+            "googleMaps": { "$ref": "#/$defs/toggle" },
+            "socialLinks": { "$ref": "#/$defs/toggle" },
+            "officeLocations": { "$ref": "#/$defs/toggle" }
+          }
+        },
+        "seo": {
+          "type": "object",
+          "required": ["enabled", "metadata", "sitemap", "robotsTxt", "canonicalUrls", "openGraph", "structuredData", "breadcrumbs", "imageSeo"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "metadata": { "$ref": "#/$defs/toggle" },
+            "sitemap": { "$ref": "#/$defs/toggle" },
+            "robotsTxt": { "$ref": "#/$defs/toggle" },
+            "canonicalUrls": { "$ref": "#/$defs/toggle" },
+            "openGraph": { "$ref": "#/$defs/toggle" },
+            "structuredData": { "$ref": "#/$defs/toggle" },
+            "breadcrumbs": { "$ref": "#/$defs/toggle" },
+            "imageSeo": { "$ref": "#/$defs/toggle" }
+          }
+        },
+        "accessibility": {
+          "type": "object",
+          "required": ["enabled", "keyboardNavigation", "focusStates", "reducedMotion", "semanticHtml"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "keyboardNavigation": { "$ref": "#/$defs/toggle" },
+            "focusStates": { "$ref": "#/$defs/toggle" },
+            "reducedMotion": { "$ref": "#/$defs/toggle" },
+            "semanticHtml": { "$ref": "#/$defs/toggle" }
+          }
+        }
+      }
+    },
+    "featureDependencies": {
+      "type": "object",
+      "required": ["rfq", "productDetails", "productCategories", "serviceDetails", "projectDetails", "blogCategories", "blogTags", "lightbox", "multipleLocations"],
+      "additionalProperties": false,
+      "properties": {
+        "rfq": { "$ref": "#/$defs/dependencyList" },
+        "productDetails": { "$ref": "#/$defs/dependencyList" },
+        "productCategories": { "$ref": "#/$defs/dependencyList" },
+        "serviceDetails": { "$ref": "#/$defs/dependencyList" },
+        "projectDetails": { "$ref": "#/$defs/dependencyList" },
+        "blogCategories": { "$ref": "#/$defs/dependencyList" },
+        "blogTags": { "$ref": "#/$defs/dependencyList" },
+        "lightbox": { "$ref": "#/$defs/dependencyList" },
+        "multipleLocations": { "$ref": "#/$defs/dependencyList" }
+      }
+    },
+    "featureRules": {
+      "type": "object",
+      "required": ["doNotEnableUnapprovedFeatures", "doNotCreatePagesForDisabledFeatures", "doNotCreateNavigationForDisabledPages", "doNotCreateContentModelsForUnusedFeatures", "doNotExposeDisabledFeaturesInProduction", "featureDependenciesMustBeSatisfied"],
+      "additionalProperties": false,
+      "properties": {
+        "doNotEnableUnapprovedFeatures": { "type": "boolean" },
+        "doNotCreatePagesForDisabledFeatures": { "type": "boolean" },
+        "doNotCreateNavigationForDisabledPages": { "type": "boolean" },
+        "doNotCreateContentModelsForUnusedFeatures": { "type": "boolean" },
+        "doNotExposeDisabledFeaturesInProduction": { "type": "boolean" },
+        "featureDependenciesMustBeSatisfied": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "toggle": {
+      "type": "object",
+      "required": ["enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" }
+      }
+    },
+    "servicePage": {
+      "type": "object",
+      "required": ["enabled", "detailPages", "categories"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "detailPages": { "type": "boolean" },
+        "categories": { "type": "boolean" }
+      }
+    },
+    "productPage": {
+      "type": "object",
+      "required": ["enabled", "categories", "detailPages", "technicalSpecifications", "brochures", "downloads"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "categories": { "type": "boolean" },
+        "detailPages": { "type": "boolean" },
+        "technicalSpecifications": { "type": "boolean" },
+        "brochures": { "type": "boolean" },
+        "downloads": { "type": "boolean" }
+      }
+    },
+    "projectPage": {
+      "type": "object",
+      "required": ["enabled", "detailPages", "categories", "gallery", "caseStudies"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "detailPages": { "type": "boolean" },
+        "categories": { "type": "boolean" },
+        "gallery": { "type": "boolean" },
+        "caseStudies": { "type": "boolean" }
+      }
+    },
+    "blogPage": {
+      "type": "object",
+      "required": ["enabled", "categories", "tags", "authors", "search"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "categories": { "type": "boolean" },
+        "tags": { "type": "boolean" },
+        "authors": { "type": "boolean" },
+        "search": { "type": "boolean" }
+      }
+    },
+    "faqPage": {
+      "type": "object",
+      "required": ["enabled", "categories"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "categories": { "type": "boolean" }
+      }
+    },
+    "locationsPage": {
+      "type": "object",
+      "required": ["enabled", "multipleLocations"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "multipleLocations": { "type": "boolean" }
+      }
+    },
+    "dependencyList": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,392 @@
+{
+  "$schema": "./schemas/navigation.config.schema.json",
+
+  "navigation": {
+    "header": {
+      "enabled": true,
+
+      "behavior": {
+        "sticky": true,
+        "hideOnScroll": false,
+        "transparentOnHero": false
+      },
+
+      "logo": {
+        "enabled": true,
+        "target": "/"
+      },
+
+      "primary": [
+        {
+          "id": "home",
+          "label": "Home",
+          "href": "/",
+          "type": "page",
+          "enabled": true
+        },
+        {
+          "id": "about",
+          "label": "About Us",
+          "href": "/about",
+          "type": "page",
+          "enabled": true
+        },
+        {
+          "id": "services",
+          "label": "Services",
+          "href": "/services",
+          "type": "page",
+          "enabled": true
+        },
+        {
+          "id": "products",
+          "label": "Products",
+          "href": "/products",
+          "type": "page",
+          "enabled": true
+        },
+        {
+          "id": "projects",
+          "label": "Projects",
+          "href": "/projects",
+          "type": "page",
+          "enabled": true
+        },
+        {
+          "id": "blog",
+          "label": "News",
+          "href": "/blog",
+          "type": "page",
+          "enabled": true
+        },
+        {
+          "id": "contact",
+          "label": "Contact",
+          "href": "/contact",
+          "type": "page",
+          "enabled": true
+        }
+      ],
+
+      "cta": {
+        "enabled": true,
+        "label": "Request a Quote",
+        "href": "/rfq",
+        "type": "internal"
+      }
+    },
+
+    "mobile": {
+      "enabled": true,
+
+      "menu": {
+        "type": "drawer",
+        "position": "right",
+        "closeOnNavigation": true
+      },
+
+      "primary": [
+        {
+          "id": "home",
+          "label": "Home",
+          "href": "/",
+          "enabled": true
+        },
+        {
+          "id": "about",
+          "label": "About Us",
+          "href": "/about",
+          "enabled": true
+        },
+        {
+          "id": "services",
+          "label": "Services",
+          "href": "/services",
+          "enabled": true
+        },
+        {
+          "id": "products",
+          "label": "Products",
+          "href": "/products",
+          "enabled": true
+        },
+        {
+          "id": "projects",
+          "label": "Projects",
+          "href": "/projects",
+          "enabled": true
+        },
+        {
+          "id": "blog",
+          "label": "News",
+          "href": "/blog",
+          "enabled": true
+        },
+        {
+          "id": "contact",
+          "label": "Contact",
+          "href": "/contact",
+          "enabled": true
+        }
+      ],
+
+      "cta": {
+        "enabled": true,
+        "label": "Request a Quote",
+        "href": "/rfq"
+      }
+    },
+
+    "secondary": {
+      "enabled": false,
+
+      "items": []
+    }
+  },
+
+  "dropdowns": {
+    "services": {
+      "enabled": true,
+
+      "label": "Services",
+
+      "type": "mega-menu",
+
+      "items": [
+        {
+          "id": "service-1",
+          "label": "",
+          "description": "",
+          "href": "",
+          "enabled": true
+        },
+        {
+          "id": "service-2",
+          "label": "",
+          "description": "",
+          "href": "",
+          "enabled": true
+        }
+      ],
+
+      "viewAll": {
+        "enabled": true,
+        "label": "View All Services",
+        "href": "/services"
+      }
+    },
+
+    "products": {
+      "enabled": true,
+
+      "label": "Products",
+
+      "type": "dropdown",
+
+      "items": [
+        {
+          "id": "category-1",
+          "label": "",
+          "href": "",
+          "enabled": true
+        },
+        {
+          "id": "category-2",
+          "label": "",
+          "href": "",
+          "enabled": true
+        }
+      ],
+
+      "viewAll": {
+        "enabled": true,
+        "label": "View All Products",
+        "href": "/products"
+      }
+    },
+
+    "projects": {
+      "enabled": false,
+
+      "label": "Projects",
+
+      "type": "dropdown",
+
+      "items": []
+    }
+  },
+
+  "footer": {
+    "enabled": true,
+
+    "columns": [
+      {
+        "id": "company",
+        "title": "Company",
+        "items": [
+          {
+            "label": "About Us",
+            "href": "/about",
+            "enabled": true
+          },
+          {
+            "label": "Our Team",
+            "href": "/team",
+            "enabled": false
+          },
+          {
+            "label": "Certifications",
+            "href": "/certifications",
+            "enabled": true
+          },
+          {
+            "label": "Contact Us",
+            "href": "/contact",
+            "enabled": true
+          }
+        ]
+      },
+
+      {
+        "id": "services",
+        "title": "Services",
+        "items": [
+          {
+            "label": "Services",
+            "href": "/services",
+            "enabled": true
+          },
+          {
+            "label": "Projects",
+            "href": "/projects",
+            "enabled": true
+          }
+        ]
+      },
+
+      {
+        "id": "resources",
+        "title": "Resources",
+        "items": [
+          {
+            "label": "News",
+            "href": "/blog",
+            "enabled": true
+          },
+          {
+            "label": "FAQs",
+            "href": "/faq",
+            "enabled": true
+          },
+          {
+            "label": "Request a Quote",
+            "href": "/rfq",
+            "enabled": true
+          }
+        ]
+      }
+    ],
+
+    "contact": {
+      "enabled": true,
+      "showPhone": true,
+      "showEmail": true,
+      "showAddress": true,
+      "showBusinessHours": true
+    },
+
+    "social": {
+      "enabled": true,
+      "platforms": [
+        "facebook",
+        "instagram",
+        "linkedin",
+        "youtube"
+      ]
+    },
+
+    "legal": {
+      "enabled": true,
+
+      "items": [
+        {
+          "label": "Privacy Policy",
+          "href": "/privacy",
+          "enabled": true
+        },
+        {
+          "label": "Terms of Use",
+          "href": "/terms",
+          "enabled": true
+        }
+      ]
+    }
+  },
+
+  "breadcrumbs": {
+    "enabled": true,
+
+    "homeLabel": "Home",
+
+    "separator": "/",
+
+    "showOn": [
+      "services",
+      "service-details",
+      "products",
+      "product-details",
+      "projects",
+      "project-details",
+      "blog",
+      "blog-details",
+      "faq",
+      "rfq"
+    ]
+  },
+
+  "utilityNavigation": {
+    "enabled": false,
+
+    "items": []
+  },
+
+  "navigationRules": {
+    "respectFeatureConfiguration": true,
+
+    "hideDisabledFeatures": true,
+
+    "hideDisabledPages": true,
+
+    "preventBrokenLinks": true,
+
+    "preventLinksToDisabledFeatures": true,
+
+    "preserveLogicalHierarchy": true,
+
+    "mobileAndDesktopMustRemainConsistent": true,
+
+    "allowDifferentMobileOrdering": true,
+
+    "allowClientSpecificLabels": true,
+
+    "allowExternalLinks": true,
+
+    "externalLinksOpenInNewTab": true
+  },
+
+  "externalLinks": [],
+
+  "redirects": [],
+
+  "accessibility": {
+    "keyboardNavigation": true,
+
+    "ariaLabelsRequired": true,
+
+    "currentPageIndicator": true,
+
+    "focusVisible": true,
+
+    "skipToContent": true
+  }
+}

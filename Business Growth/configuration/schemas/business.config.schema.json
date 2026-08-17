@@ -1,0 +1,348 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "./schemas/business.config.schema.json",
+  "title": "Business Growth — Business Configuration",
+  "description": "Client business information: identity, branding, contact, hours, locations, team, credentials, relationships, metrics, legal. Mirrors configuration/business.config.json (authoritative).",
+  "type": "object",
+  "required": [
+    "business",
+    "branding",
+    "contact",
+    "businessHours",
+    "socialMedia",
+    "locations",
+    "companyStructure",
+    "credentials",
+    "relationships",
+    "businessMetrics",
+    "legal",
+    "contentRules"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "business": {
+      "type": "object",
+      "required": ["legalName", "displayName", "shortName", "tagline", "description", "industry", "subIndustry", "businessType", "yearEstablished", "mission", "vision", "values", "companyStory", "leadershipMessage", "companyProfile"],
+      "additionalProperties": false,
+      "properties": {
+        "legalName": { "type": "string" },
+        "displayName": { "type": "string" },
+        "shortName": { "type": "string" },
+        "tagline": { "type": "string" },
+        "description": { "type": "string" },
+        "industry": { "type": "string" },
+        "subIndustry": { "type": "string" },
+        "businessType": { "type": "string" },
+        "yearEstablished": { "type": ["integer", "null"] },
+        "mission": { "type": "string" },
+        "vision": { "type": "string" },
+        "values": { "type": "array", "items": { "type": "string" } },
+        "companyStory": { "type": "string" },
+        "leadershipMessage": { "type": "string" },
+        "companyProfile": {
+          "type": "object",
+          "required": ["short", "medium", "long"],
+          "additionalProperties": false,
+          "properties": {
+            "short": { "type": "string" },
+            "medium": { "type": "string" },
+            "long": { "type": "string" }
+          }
+        }
+      }
+    },
+    "branding": {
+      "type": "object",
+      "required": ["brandName", "logo", "brandAssets"],
+      "additionalProperties": false,
+      "properties": {
+        "brandName": { "type": "string" },
+        "logo": {
+          "type": "object",
+          "required": ["primary", "secondary", "monochrome", "favicon"],
+          "additionalProperties": false,
+          "properties": {
+            "primary": { "type": "string" },
+            "secondary": { "type": "string" },
+            "monochrome": { "type": "string" },
+            "favicon": { "type": "string" }
+          }
+        },
+        "brandAssets": {
+          "type": "object",
+          "required": ["guidelines", "companyProfilePdf", "brochure"],
+          "additionalProperties": false,
+          "properties": {
+            "guidelines": { "type": "string" },
+            "companyProfilePdf": { "type": "string" },
+            "brochure": { "type": "string" }
+          }
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "required": ["primaryEmail", "secondaryEmail", "phoneNumbers", "whatsappNumbers", "fax", "website", "physicalAddress", "poBox", "googleMapsUrl", "coordinates"],
+      "additionalProperties": false,
+      "properties": {
+        "primaryEmail": { "type": "string" },
+        "secondaryEmail": { "type": "string" },
+        "phoneNumbers": { "type": "array", "items": { "type": "string" } },
+        "whatsappNumbers": { "type": "array", "items": { "type": "string" } },
+        "fax": { "type": "string" },
+        "website": { "type": "string" },
+        "physicalAddress": { "$ref": "#/$defs/physicalAddress" },
+        "poBox": { "type": "string" },
+        "googleMapsUrl": { "type": "string" },
+        "coordinates": { "$ref": "#/$defs/coordinates" }
+      }
+    },
+    "businessHours": {
+      "type": "object",
+      "required": ["timezone", "schedule"],
+      "additionalProperties": false,
+      "properties": {
+        "timezone": { "type": "string" },
+        "schedule": {
+          "type": "object",
+          "required": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+          "additionalProperties": false,
+          "properties": {
+            "monday": { "$ref": "#/$defs/businessDay" },
+            "tuesday": { "$ref": "#/$defs/businessDay" },
+            "wednesday": { "$ref": "#/$defs/businessDay" },
+            "thursday": { "$ref": "#/$defs/businessDay" },
+            "friday": { "$ref": "#/$defs/businessDay" },
+            "saturday": { "$ref": "#/$defs/businessDay" },
+            "sunday": { "$ref": "#/$defs/businessDay" }
+          }
+        }
+      }
+    },
+    "socialMedia": {
+      "type": "object",
+      "required": ["facebook", "instagram", "linkedin", "youtube", "tiktok", "x", "telegram"],
+      "additionalProperties": false,
+      "properties": {
+        "facebook": { "type": "string" },
+        "instagram": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "youtube": { "type": "string" },
+        "tiktok": { "type": "string" },
+        "x": { "type": "string" },
+        "telegram": { "type": "string" }
+      }
+    },
+    "locations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/location" }
+    },
+    "companyStructure": {
+      "type": "object",
+      "required": ["departments", "teamMembers"],
+      "additionalProperties": false,
+      "properties": {
+        "departments": { "type": "array", "items": { "type": "string" } },
+        "teamMembers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "position", "department", "shortBio", "photo", "email", "linkedin"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "position": { "type": "string" },
+              "department": { "type": "string" },
+              "shortBio": { "type": "string" },
+              "photo": { "type": "string" },
+              "email": { "type": "string" },
+              "linkedin": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "credentials": {
+      "type": "object",
+      "required": ["certifications", "awards", "memberships"],
+      "additionalProperties": false,
+      "properties": {
+        "certifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "issuer", "certificateNumber", "issueDate", "expiryDate", "document", "logo"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "issuer": { "type": "string" },
+              "certificateNumber": { "type": "string" },
+              "issueDate": { "type": "string" },
+              "expiryDate": { "type": "string" },
+              "document": { "type": "string" },
+              "logo": { "type": "string" }
+            }
+          }
+        },
+        "awards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "issuer", "year", "description"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "issuer": { "type": "string" },
+              "year": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "memberships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "organization", "membershipType", "memberSince", "logo"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "organization": { "type": "string" },
+              "membershipType": { "type": "string" },
+              "memberSince": { "type": "string" },
+              "logo": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "required": ["clients", "partners"],
+      "additionalProperties": false,
+      "properties": {
+        "clients": { "$ref": "#/$defs/relationshipList" },
+        "partners": { "$ref": "#/$defs/relationshipList" }
+      }
+    },
+    "businessMetrics": {
+      "type": "object",
+      "required": ["yearsOfExperience", "projectsCompleted", "clientsServed", "employees", "locationsCount", "countriesServed", "otherMetrics"],
+      "additionalProperties": false,
+      "properties": {
+        "yearsOfExperience": { "type": ["integer", "null"] },
+        "projectsCompleted": { "type": ["integer", "null"] },
+        "clientsServed": { "type": ["integer", "null"] },
+        "employees": { "type": ["integer", "null"] },
+        "locationsCount": { "type": ["integer", "null"] },
+        "countriesServed": { "type": ["integer", "null"] },
+        "otherMetrics": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "legal": {
+      "type": "object",
+      "required": ["registrationNumber", "taxIdentificationNumber", "privacyPolicyUrl", "termsUrl", "cookiePolicyUrl"],
+      "additionalProperties": false,
+      "properties": {
+        "registrationNumber": { "type": "string" },
+        "taxIdentificationNumber": { "type": "string" },
+        "privacyPolicyUrl": { "type": "string" },
+        "termsUrl": { "type": "string" },
+        "cookiePolicyUrl": { "type": "string" }
+      }
+    },
+    "contentRules": {
+      "type": "object",
+      "required": ["clientProvidedInformationIsAuthoritative", "doNotInventBusinessInformation", "doNotInventStatistics", "doNotInventCertifications", "doNotInventClients", "doNotInventAwards", "doNotInventLocations"],
+      "additionalProperties": false,
+      "properties": {
+        "clientProvidedInformationIsAuthoritative": { "type": "boolean" },
+        "doNotInventBusinessInformation": { "type": "boolean" },
+        "doNotInventStatistics": { "type": "boolean" },
+        "doNotInventCertifications": { "type": "boolean" },
+        "doNotInventClients": { "type": "boolean" },
+        "doNotInventAwards": { "type": "boolean" },
+        "doNotInventLocations": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "physicalAddress": {
+      "type": "object",
+      "required": ["street", "city", "region", "country", "postalCode"],
+      "additionalProperties": false,
+      "properties": {
+        "street": { "type": "string" },
+        "city": { "type": "string" },
+        "region": { "type": "string" },
+        "country": { "type": "string" },
+        "postalCode": { "type": "string" }
+      }
+    },
+    "coordinates": {
+      "type": "object",
+      "required": ["latitude", "longitude"],
+      "additionalProperties": false,
+      "properties": {
+        "latitude": { "type": ["number", "null"] },
+        "longitude": { "type": ["number", "null"] }
+      }
+    },
+    "businessDay": {
+      "type": "object",
+      "required": ["enabled", "open", "close"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "open": { "type": "string" },
+        "close": { "type": "string" }
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": ["id", "name", "type", "address", "phone", "email", "googleMapsUrl", "coordinates", "businessHours"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "address": { "$ref": "#/$defs/physicalAddress" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "googleMapsUrl": { "type": "string" },
+        "coordinates": { "$ref": "#/$defs/coordinates" },
+        "businessHours": {
+          "type": "object",
+          "required": ["timezone", "schedule"],
+          "additionalProperties": false,
+          "properties": {
+            "timezone": { "type": "string" },
+            "schedule": {
+              "type": "object",
+              "additionalProperties": { "$ref": "#/$defs/businessDay" }
+            }
+          }
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "required": ["id", "name", "logo", "description", "website"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "logo": { "type": "string" },
+        "description": { "type": "string" },
+        "website": { "type": "string" }
+      }
+    },
+    "relationshipList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relationship" }
+    }
+  }
+}

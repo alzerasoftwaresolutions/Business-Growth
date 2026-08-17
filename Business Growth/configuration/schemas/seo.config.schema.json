@@ -1,0 +1,587 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "./schemas/seo.config.schema.json",
+  "title": "Business Growth — SEO Configuration",
+  "description": "SEO: site identity, indexing, robots, sitemap, canonical, metadata, open graph, twitter, structured data, breadcrumbs, images, URL rules, pagination, redirects, verification, local/international SEO, content/performance SEO. Mirrors configuration/seo.config.json (authoritative).",
+  "type": "object",
+  "required": ["seo", "pageSeoOverrides", "seoRules"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "seo": {
+      "type": "object",
+      "required": ["enabled", "site", "indexing", "robots", "sitemap", "canonical", "metadata", "openGraph", "twitter", "structuredData", "breadcrumbs", "images", "urls", "pagination", "redirects", "searchEngineVerification", "localSeo", "internationalSeo", "contentSeo", "performanceSeo", "analyticsIntegration"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "site": {
+          "type": "object",
+          "required": ["name", "legalName", "url", "canonicalUrl", "defaultLanguage", "defaultTitle", "titleTemplate", "defaultDescription", "defaultKeywords", "defaultImage", "favicon", "themeColor"],
+          "additionalProperties": false,
+          "properties": {
+            "name": { "type": "string" },
+            "legalName": { "type": "string" },
+            "url": { "type": "string" },
+            "canonicalUrl": { "type": "string" },
+            "defaultLanguage": { "type": "string" },
+            "defaultTitle": { "type": "string" },
+            "titleTemplate": { "type": "string" },
+            "defaultDescription": { "type": "string" },
+            "defaultKeywords": { "type": "array", "items": { "type": "string" } },
+            "defaultImage": { "type": "string" },
+            "favicon": { "type": "string" },
+            "themeColor": { "type": "string" }
+          }
+        },
+        "indexing": {
+          "type": "object",
+          "required": ["allowIndexing", "allowFollowing", "environmentRules"],
+          "additionalProperties": false,
+          "properties": {
+            "allowIndexing": { "type": "boolean" },
+            "allowFollowing": { "type": "boolean" },
+            "environmentRules": {
+              "type": "object",
+              "required": ["development", "staging", "production"],
+              "additionalProperties": false,
+              "properties": {
+                "development": { "$ref": "#/$defs/indexRules" },
+                "staging": { "$ref": "#/$defs/indexRules" },
+                "production": { "$ref": "#/$defs/indexRules" }
+              }
+            }
+          }
+        },
+        "robots": {
+          "type": "object",
+          "required": ["enabled", "default", "disallow", "allow", "sitemap"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "default": { "$ref": "#/$defs/indexRules" },
+            "disallow": { "type": "array", "items": { "type": "string" } },
+            "allow": { "type": "array", "items": { "type": "string" } },
+            "sitemap": { "type": "string" }
+          }
+        },
+        "sitemap": {
+          "type": "object",
+          "required": ["enabled", "url", "include", "exclude", "changeFrequency"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "url": { "type": "string" },
+            "include": {
+              "type": "object",
+              "required": ["pages", "services", "serviceDetails", "products", "productCategories", "productDetails", "projects", "projectDetails", "blog", "blogPosts", "faq", "team", "certifications", "locations"],
+              "additionalProperties": false,
+              "properties": {
+                "pages": { "type": "boolean" },
+                "services": { "type": "boolean" },
+                "serviceDetails": { "type": "boolean" },
+                "products": { "type": "boolean" },
+                "productCategories": { "type": "boolean" },
+                "productDetails": { "type": "boolean" },
+                "projects": { "type": "boolean" },
+                "projectDetails": { "type": "boolean" },
+                "blog": { "type": "boolean" },
+                "blogPosts": { "type": "boolean" },
+                "faq": { "type": "boolean" },
+                "team": { "type": "boolean" },
+                "certifications": { "type": "boolean" },
+                "locations": { "type": "boolean" }
+              }
+            },
+            "exclude": { "type": "array", "items": { "type": "string" } },
+            "changeFrequency": {
+              "type": "object",
+              "required": ["pages", "services", "products", "projects", "blog"],
+              "additionalProperties": false,
+              "properties": {
+                "pages": { "type": "string" },
+                "services": { "type": "string" },
+                "products": { "type": "string" },
+                "projects": { "type": "string" },
+                "blog": { "type": "string" }
+              }
+            }
+          }
+        },
+        "canonical": {
+          "type": "object",
+          "required": ["enabled", "baseUrl", "trailingSlash", "forceHttps"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "baseUrl": { "type": "string" },
+            "trailingSlash": { "type": "boolean" },
+            "forceHttps": { "type": "boolean" }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "required": ["enabled", "defaults", "pages"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "defaults": {
+              "type": "object",
+              "required": ["title", "description", "image", "type"],
+              "additionalProperties": false,
+              "properties": {
+                "title": { "type": "string" },
+                "description": { "type": "string" },
+                "image": { "type": "string" },
+                "type": { "type": "string" }
+              }
+            },
+            "pages": {
+              "type": "object",
+              "required": ["home", "about", "services", "products", "projects", "testimonials", "blog", "contact", "rfq", "faq"],
+              "additionalProperties": false,
+              "properties": {
+                "home": { "$ref": "#/$defs/pageMetadata" },
+                "about": { "$ref": "#/$defs/pageMetadata" },
+                "services": { "$ref": "#/$defs/pageMetadata" },
+                "products": { "$ref": "#/$defs/pageMetadata" },
+                "projects": { "$ref": "#/$defs/pageMetadata" },
+                "testimonials": { "$ref": "#/$defs/pageMetadata" },
+                "blog": { "$ref": "#/$defs/pageMetadata" },
+                "contact": { "$ref": "#/$defs/pageMetadata" },
+                "rfq": { "$ref": "#/$defs/pageMetadata" },
+                "faq": { "$ref": "#/$defs/pageMetadata" }
+              }
+            }
+          }
+        },
+        "openGraph": {
+          "type": "object",
+          "required": ["enabled", "type", "siteName", "defaultImage", "locale", "pages"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "type": { "type": "string" },
+            "siteName": { "type": "string" },
+            "defaultImage": { "type": "string" },
+            "locale": { "type": "string" },
+            "pages": {
+              "type": "object",
+              "required": ["home", "about", "services", "products", "projects", "blog", "contact"],
+              "additionalProperties": false,
+              "properties": {
+                "home": { "$ref": "#/$defs/openGraphPage" },
+                "about": { "$ref": "#/$defs/openGraphPage" },
+                "services": { "$ref": "#/$defs/openGraphPage" },
+                "products": { "$ref": "#/$defs/openGraphPage" },
+                "projects": { "$ref": "#/$defs/openGraphPage" },
+                "blog": { "$ref": "#/$defs/openGraphPage" },
+                "contact": { "$ref": "#/$defs/openGraphPage" }
+              }
+            }
+          }
+        },
+        "twitter": {
+          "type": "object",
+          "required": ["enabled", "card", "site", "creator", "defaultImage"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "card": { "type": "string" },
+            "site": { "type": "string" },
+            "creator": { "type": "string" },
+            "defaultImage": { "type": "string" }
+          }
+        },
+        "structuredData": {
+          "type": "object",
+          "required": ["enabled", "organization", "localBusiness", "services", "products", "projects", "articles", "breadcrumbs", "faq"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "organization": { "$ref": "#/$defs/organization" },
+            "localBusiness": { "$ref": "#/$defs/localBusiness" },
+            "services": { "$ref": "#/$defs/serviceStructuredData" },
+            "products": { "$ref": "#/$defs/productStructuredData" },
+            "projects": { "$ref": "#/$defs/typedToggle" },
+            "articles": { "$ref": "#/$defs/articleStructuredData" },
+            "breadcrumbs": { "$ref": "#/$defs/toggleOnly" },
+            "faq": { "$ref": "#/$defs/toggleOnly" }
+          }
+        },
+        "breadcrumbs": {
+          "type": "object",
+          "required": ["enabled", "homeLabel", "separator"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "homeLabel": { "type": "string" },
+            "separator": { "type": "string" }
+          }
+        },
+        "images": {
+          "type": "object",
+          "required": ["enabled", "defaultAltText", "requireAltText", "allowEmptyAltTextForDecorativeImages", "socialImage"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "defaultAltText": { "type": "string" },
+            "requireAltText": { "type": "boolean" },
+            "allowEmptyAltTextForDecorativeImages": { "type": "boolean" },
+            "socialImage": {
+              "type": "object",
+              "required": ["width", "height"],
+              "additionalProperties": false,
+              "properties": {
+                "width": { "type": "integer", "minimum": 0 },
+                "height": { "type": "integer", "minimum": 0 }
+              }
+            }
+          }
+        },
+        "urls": {
+          "type": "object",
+          "required": ["format", "lowercase", "removeTrailingSlash", "removeFileExtensions", "allowedCharacters", "rules"],
+          "additionalProperties": false,
+          "properties": {
+            "format": { "type": "string" },
+            "lowercase": { "type": "boolean" },
+            "removeTrailingSlash": { "type": "boolean" },
+            "removeFileExtensions": { "type": "boolean" },
+            "allowedCharacters": { "type": "string" },
+            "rules": { "$ref": "#/$defs/urlRules" }
+          }
+        },
+        "pagination": {
+          "type": "object",
+          "required": ["enabled", "canonicalStrategy", "noindexPaginatedPages"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "canonicalStrategy": { "type": "string" },
+            "noindexPaginatedPages": { "type": "boolean" }
+          }
+        },
+        "redirects": {
+          "type": "object",
+          "required": ["enabled", "rules"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "rules": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["from", "to"],
+                "additionalProperties": false,
+                "properties": {
+                  "from": { "type": "string" },
+                  "to": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "searchEngineVerification": {
+          "type": "object",
+          "required": ["google", "bing"],
+          "additionalProperties": false,
+          "properties": {
+            "google": { "$ref": "#/$defs/verification" },
+            "bing": { "$ref": "#/$defs/verification" }
+          }
+        },
+        "localSeo": {
+          "type": "object",
+          "required": ["enabled", "businessName", "primaryLocation", "serviceAreas", "localKeywords", "googleBusinessProfile"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "businessName": { "type": "string" },
+            "primaryLocation": { "type": "string" },
+            "serviceAreas": { "type": "array", "items": { "type": "string" } },
+            "localKeywords": { "type": "array", "items": { "type": "string" } },
+            "googleBusinessProfile": {
+              "type": "object",
+              "required": ["enabled", "url"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "url": { "type": "string" }
+              }
+            }
+          }
+        },
+        "internationalSeo": {
+          "type": "object",
+          "required": ["enabled", "supportedLanguages", "defaultLanguage", "hreflang"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "supportedLanguages": { "type": "array", "items": { "type": "string" } },
+            "defaultLanguage": { "type": "string" },
+            "hreflang": {
+              "type": "object",
+              "required": ["enabled"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" }
+              }
+            }
+          }
+        },
+        "contentSeo": {
+          "type": "object",
+          "required": ["enabled", "requireUniquePageTitles", "requireUniqueMetaDescriptions", "requireLogicalHeadingHierarchy", "requireDescriptiveUrls", "requireDescriptiveLinkText", "requireImageAltText", "avoidKeywordStuffing", "avoidDuplicateContent"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "requireUniquePageTitles": { "type": "boolean" },
+            "requireUniqueMetaDescriptions": { "type": "boolean" },
+            "requireLogicalHeadingHierarchy": { "type": "boolean" },
+            "requireDescriptiveUrls": { "type": "boolean" },
+            "requireDescriptiveLinkText": { "type": "boolean" },
+            "requireImageAltText": { "type": "boolean" },
+            "avoidKeywordStuffing": { "type": "boolean" },
+            "avoidDuplicateContent": { "type": "boolean" }
+          }
+        },
+        "performanceSeo": {
+          "type": "object",
+          "required": ["enabled", "optimizeImages", "lazyLoadImages", "preloadCriticalAssets", "optimizeFonts", "minimizeBlockingResources"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "optimizeImages": { "type": "boolean" },
+            "lazyLoadImages": { "type": "boolean" },
+            "preloadCriticalAssets": { "type": "boolean" },
+            "optimizeFonts": { "type": "boolean" },
+            "minimizeBlockingResources": { "type": "boolean" }
+          }
+        },
+        "analyticsIntegration": {
+          "type": "object",
+          "required": ["googleAnalytics", "googleSearchConsole"],
+          "additionalProperties": false,
+          "properties": {
+            "googleAnalytics": {
+              "type": "object",
+              "required": ["enabled", "measurementId"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "measurementId": { "type": "string" }
+              }
+            },
+            "googleSearchConsole": {
+              "type": "object",
+              "required": ["enabled", "verificationValue"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "verificationValue": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "pageSeoOverrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path"],
+        "properties": {
+          "path": { "type": "string" }
+        }
+      }
+    },
+    "seoRules": {
+      "type": "object",
+      "required": ["clientProvidedSeoDataIsAuthoritative", "doNotInventBusinessKeywords", "doNotInventBusinessClaims", "doNotInventLocations", "doNotInventCertifications", "doNotInventStatistics", "doNotCreateDuplicateMetadata", "doNotIndexDevelopmentEnvironment", "doNotIndexStagingEnvironment", "productionMustHaveCanonicalUrls", "productionMustHaveSitemap", "productionMustHaveRobotsTxt", "productionMustHaveValidMetadata", "productionMustHaveStructuredDataWhereApplicable", "respectFeatureConfiguration"],
+      "additionalProperties": false,
+      "properties": {
+        "clientProvidedSeoDataIsAuthoritative": { "type": "boolean" },
+        "doNotInventBusinessKeywords": { "type": "boolean" },
+        "doNotInventBusinessClaims": { "type": "boolean" },
+        "doNotInventLocations": { "type": "boolean" },
+        "doNotInventCertifications": { "type": "boolean" },
+        "doNotInventStatistics": { "type": "boolean" },
+        "doNotCreateDuplicateMetadata": { "type": "boolean" },
+        "doNotIndexDevelopmentEnvironment": { "type": "boolean" },
+        "doNotIndexStagingEnvironment": { "type": "boolean" },
+        "productionMustHaveCanonicalUrls": { "type": "boolean" },
+        "productionMustHaveSitemap": { "type": "boolean" },
+        "productionMustHaveRobotsTxt": { "type": "boolean" },
+        "productionMustHaveValidMetadata": { "type": "boolean" },
+        "productionMustHaveStructuredDataWhereApplicable": { "type": "boolean" },
+        "respectFeatureConfiguration": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "indexRules": {
+      "type": "object",
+      "required": ["index", "follow"],
+      "additionalProperties": false,
+      "properties": {
+        "index": { "type": "boolean" },
+        "follow": { "type": "boolean" }
+      }
+    },
+    "pageMetadata": {
+      "type": "object",
+      "required": ["title", "description", "keywords", "image", "robots"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "keywords": { "type": "array", "items": { "type": "string" } },
+        "image": { "type": "string" },
+        "robots": { "$ref": "#/$defs/indexRules" }
+      }
+    },
+    "openGraphPage": {
+      "type": "object",
+      "required": ["title", "description", "image"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "image": { "type": "string" }
+      }
+    },
+    "organization": {
+      "type": "object",
+      "required": ["enabled", "type", "name", "url", "logo", "description", "telephone", "email", "sameAs"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "type": { "type": "string" },
+        "name": { "type": "string" },
+        "url": { "type": "string" },
+        "logo": { "type": "string" },
+        "description": { "type": "string" },
+        "telephone": { "type": "string" },
+        "email": { "type": "string" },
+        "sameAs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "localBusiness": {
+      "type": "object",
+      "required": ["enabled", "type", "name", "description", "url", "logo", "telephone", "email", "priceRange", "address", "geo", "openingHours", "sameAs"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "type": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "url": { "type": "string" },
+        "logo": { "type": "string" },
+        "telephone": { "type": "string" },
+        "email": { "type": "string" },
+        "priceRange": { "type": "string" },
+        "address": {
+          "type": "object",
+          "required": ["street", "city", "region", "postalCode", "country"],
+          "additionalProperties": false,
+          "properties": {
+            "street": { "type": "string" },
+            "city": { "type": "string" },
+            "region": { "type": "string" },
+            "postalCode": { "type": "string" },
+            "country": { "type": "string" }
+          }
+        },
+        "geo": {
+          "type": "object",
+          "required": ["latitude", "longitude"],
+          "additionalProperties": false,
+          "properties": {
+            "latitude": { "type": ["number", "null"] },
+            "longitude": { "type": ["number", "null"] }
+          }
+        },
+        "openingHours": { "type": "array", "items": { "type": "string" } },
+        "sameAs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "typedToggle": {
+      "type": "object",
+      "required": ["enabled", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "type": { "type": "string" }
+      }
+    },
+    "serviceStructuredData": {
+      "type": "object",
+      "required": ["enabled", "type", "includeProvider"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "type": { "type": "string" },
+        "includeProvider": { "type": "boolean" }
+      }
+    },
+    "productStructuredData": {
+      "type": "object",
+      "required": ["enabled", "type", "includeBrand", "includeOffers"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "type": { "type": "string" },
+        "includeBrand": { "type": "boolean" },
+        "includeOffers": { "type": "boolean" }
+      }
+    },
+    "articleStructuredData": {
+      "type": "object",
+      "required": ["enabled", "type", "includeAuthor", "includePublisher"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "type": { "type": "string" },
+        "includeAuthor": { "type": "boolean" },
+        "includePublisher": { "type": "boolean" }
+      }
+    },
+    "toggleOnly": {
+      "type": "object",
+      "required": ["enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" }
+      }
+    },
+    "urlRules": {
+      "type": "object",
+      "required": ["services", "serviceDetails", "products", "productCategories", "productDetails", "projects", "projectDetails", "blog", "blogPosts", "faq", "contact", "rfq"],
+      "additionalProperties": false,
+      "properties": {
+        "services": { "type": "string" },
+        "serviceDetails": { "type": "string" },
+        "products": { "type": "string" },
+        "productCategories": { "type": "string" },
+        "productDetails": { "type": "string" },
+        "projects": { "type": "string" },
+        "projectDetails": { "type": "string" },
+        "blog": { "type": "string" },
+        "blogPosts": { "type": "string" },
+        "faq": { "type": "string" },
+        "contact": { "type": "string" },
+        "rfq": { "type": "string" }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": ["enabled", "method", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "method": { "type": "string" },
+        "value": { "type": "string" }
+      }
+    }
+  }
+}

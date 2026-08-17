@@ -1,0 +1,440 @@
+{
+  "$schema": "./schemas/analytics.config.schema.json",
+
+  "analytics": {
+    "enabled": true,
+
+    "environment": {
+      "development": false,
+      "staging": false,
+      "production": true
+    },
+
+    "privacy": {
+      "enabled": true,
+
+      "anonymizeIp": true,
+
+      "respectDoNotTrack": true,
+
+      "cookieConsentRequired": false,
+
+      "consentMode": {
+        "enabled": false,
+        "defaultAnalyticsStorage": "denied",
+        "defaultAdStorage": "denied"
+      },
+
+      "dataRetention": {
+        "enabled": true,
+        "periodMonths": 14
+      }
+    },
+
+    "googleAnalytics": {
+      "enabled": true,
+
+      "measurementId": "",
+
+      "debugMode": false,
+
+      "sendPageViews": true,
+
+      "enhancedMeasurement": true,
+
+      "configuration": {
+        "anonymizeIp": true,
+
+        "allowGoogleSignals": false,
+
+        "allowAdPersonalizationSignals": false
+      }
+    },
+
+    "googleSearchConsole": {
+      "enabled": true,
+
+      "verificationMethod": "",
+
+      "verificationValue": "",
+
+      "propertyType": "domain"
+    },
+
+    "tracking": {
+      "pageViews": {
+        "enabled": true
+      },
+
+      "scrollDepth": {
+        "enabled": true,
+
+        "thresholds": [
+          25,
+          50,
+          75,
+          90
+        ]
+      },
+
+      "outboundLinks": {
+        "enabled": true
+      },
+
+      "fileDownloads": {
+        "enabled": true
+      },
+
+      "videoEngagement": {
+        "enabled": true,
+
+        "events": {
+          "start": true,
+          "progress25": true,
+          "progress50": true,
+          "progress75": true,
+          "complete": true
+        }
+      }
+    },
+
+    "leadGeneration": {
+      "enabled": true,
+
+      "contactForm": {
+        "enabled": true,
+
+        "events": {
+          "view": true,
+          "start": true,
+          "fieldInteraction": false,
+          "submit": true,
+          "success": true,
+          "error": true
+        },
+
+        "conversionEvent": "generate_lead"
+      },
+
+      "rfq": {
+        "enabled": true,
+
+        "events": {
+          "view": true,
+          "start": true,
+          "submit": true,
+          "success": true,
+          "error": true
+        },
+
+        "conversionEvent": "generate_quote"
+      },
+
+      "phone": {
+        "enabled": true,
+
+        "event": "phone_click"
+      },
+
+      "email": {
+        "enabled": true,
+
+        "event": "email_click"
+      },
+
+      "whatsapp": {
+        "enabled": true,
+
+        "event": "whatsapp_click"
+      },
+
+      "map": {
+        "enabled": true,
+
+        "event": "map_interaction"
+      }
+    },
+
+    "ctaTracking": {
+      "enabled": true,
+
+      "trackAllCtas": true,
+
+      "events": {
+        "click": true
+      },
+
+      "ctaTypes": [
+        "request_quote",
+        "contact_us",
+        "call_now",
+        "email_us",
+        "whatsapp",
+        "view_services",
+        "view_products",
+        "view_projects",
+        "download_brochure"
+      ]
+    },
+
+    "contentEngagement": {
+      "enabled": true,
+
+      "services": {
+        "view": true,
+        "detailView": true,
+        "ctaClick": true
+      },
+
+      "products": {
+        "view": true,
+        "categoryView": true,
+        "detailView": true,
+        "brochureDownload": true,
+        "ctaClick": true
+      },
+
+      "projects": {
+        "view": true,
+        "detailView": true,
+        "galleryInteraction": true,
+        "videoInteraction": true
+      },
+
+      "blog": {
+        "view": true,
+        "categoryView": true,
+        "search": false
+      },
+
+      "testimonials": {
+        "view": true
+      },
+
+      "certifications": {
+        "view": true
+      }
+    },
+
+    "search": {
+      "enabled": false,
+
+      "trackSearches": false,
+
+      "event": "site_search"
+    },
+
+    "downloads": {
+      "enabled": true,
+
+      "trackPdf": true,
+
+      "trackBrochures": true,
+
+      "trackCatalogs": true,
+
+      "trackOtherDocuments": true,
+
+      "event": "file_download"
+    },
+
+    "campaigns": {
+      "enabled": true,
+
+      "trackUtmParameters": true,
+
+      "parameters": {
+        "utm_source": true,
+        "utm_medium": true,
+        "utm_campaign": true,
+        "utm_term": true,
+        "utm_content": true
+      }
+    },
+
+    "conversionEvents": {
+      "enabled": true,
+
+      "events": {
+        "generate_lead": {
+          "enabled": true,
+          "primary": true,
+          "category": "lead_generation"
+        },
+
+        "generate_quote": {
+          "enabled": true,
+          "primary": true,
+          "category": "lead_generation"
+        },
+
+        "phone_click": {
+          "enabled": true,
+          "primary": false,
+          "category": "communication"
+        },
+
+        "email_click": {
+          "enabled": true,
+          "primary": false,
+          "category": "communication"
+        },
+
+        "whatsapp_click": {
+          "enabled": true,
+          "primary": false,
+          "category": "communication"
+        },
+
+        "brochure_download": {
+          "enabled": true,
+          "primary": false,
+          "category": "engagement"
+        },
+
+        "contact_page_view": {
+          "enabled": true,
+          "primary": false,
+          "category": "engagement"
+        },
+
+        "rfq_page_view": {
+          "enabled": true,
+          "primary": false,
+          "category": "engagement"
+        }
+      }
+    },
+
+    "eventNaming": {
+      "convention": "snake_case",
+
+      "rules": {
+        "lowercaseOnly": true,
+        "noSpaces": true,
+        "descriptiveNames": true,
+        "consistentNaming": true
+      }
+    },
+
+    "customEvents": [],
+
+    "customDimensions": [],
+
+    "customMetrics": [],
+
+    "dashboards": {
+      "enabled": true,
+
+      "recommended": [
+        {
+          "id": "website-overview",
+          "name": "Website Overview",
+          "enabled": true
+        },
+
+        {
+          "id": "lead-generation",
+          "name": "Lead Generation",
+          "enabled": true
+        },
+
+        {
+          "id": "content-performance",
+          "name": "Content Performance",
+          "enabled": true
+        },
+
+        {
+          "id": "marketing-campaigns",
+          "name": "Marketing Campaigns",
+          "enabled": true
+        }
+      ]
+    },
+
+    "businessMetrics": {
+      "enabled": true,
+
+      "primary": [
+        "qualified_leads",
+        "quote_requests",
+        "contact_submissions"
+      ],
+
+      "secondary": [
+        "phone_clicks",
+        "whatsapp_clicks",
+        "email_clicks",
+        "brochure_downloads",
+        "service_detail_views",
+        "product_detail_views",
+        "project_detail_views"
+      ]
+    },
+
+    "reporting": {
+      "enabled": true,
+
+      "frequency": "monthly",
+
+      "metrics": [
+        "users",
+        "sessions",
+        "page_views",
+        "engagement_rate",
+        "top_pages",
+        "top_services",
+        "top_products",
+        "top_projects",
+        "lead_submissions",
+        "quote_requests",
+        "phone_clicks",
+        "email_clicks",
+        "whatsapp_clicks",
+        "file_downloads",
+        "traffic_sources",
+        "campaign_performance",
+        "landing_pages"
+      ]
+    },
+
+    "debugging": {
+      "enabled": true,
+
+      "development": {
+        "enabled": true
+      },
+
+      "production": {
+        "enabled": false
+      }
+    },
+
+    "rules": {
+      "doNotTrackSensitivePersonalInformation": true,
+
+      "doNotTrackPasswords": true,
+
+      "doNotTrackFormFieldContents": true,
+
+      "doNotTrackLeadMessageContents": true,
+
+      "doNotTrackUploadedDocuments": true,
+
+      "doNotSendPersonallyIdentifiableInformationToAnalytics": true,
+
+      "doNotInventMeasurementIds": true,
+
+      "doNotInventVerificationCodes": true,
+
+      "doNotEnableUnapprovedTrackingServices": true,
+
+      "respectPrivacyConfiguration": true,
+
+      "respectFeatureConfiguration": true,
+
+      "trackBusinessOutcomesOverVanityMetrics": true
+    }
+  }
+}

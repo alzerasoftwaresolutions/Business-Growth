@@ -1,0 +1,258 @@
+{
+  "$schema": "./schemas/business.config.schema.json",
+
+  "business": {
+    "legalName": "",
+    "displayName": "",
+    "shortName": "",
+    "tagline": "",
+    "description": "",
+    "industry": "",
+    "subIndustry": "",
+    "businessType": "",
+    "yearEstablished": null,
+
+    "mission": "",
+    "vision": "",
+
+    "values": [],
+
+    "companyStory": "",
+
+    "leadershipMessage": "",
+
+    "companyProfile": {
+      "short": "",
+      "medium": "",
+      "long": ""
+    }
+  },
+
+  "branding": {
+    "brandName": "",
+    "logo": {
+      "primary": "",
+      "secondary": "",
+      "monochrome": "",
+      "favicon": ""
+    },
+
+    "brandAssets": {
+      "guidelines": "",
+      "companyProfilePdf": "",
+      "brochure": ""
+    }
+  },
+
+  "contact": {
+    "primaryEmail": "",
+    "secondaryEmail": "",
+
+    "phoneNumbers": [],
+
+    "whatsappNumbers": [],
+
+    "fax": "",
+
+    "website": "",
+
+    "physicalAddress": {
+      "street": "",
+      "city": "",
+      "region": "",
+      "country": "",
+      "postalCode": ""
+    },
+
+    "poBox": "",
+
+    "googleMapsUrl": "",
+
+    "coordinates": {
+      "latitude": null,
+      "longitude": null
+    }
+  },
+
+  "businessHours": {
+    "timezone": "",
+    "schedule": {
+      "monday": {
+        "enabled": true,
+        "open": "",
+        "close": ""
+      },
+      "tuesday": {
+        "enabled": true,
+        "open": "",
+        "close": ""
+      },
+      "wednesday": {
+        "enabled": true,
+        "open": "",
+        "close": ""
+      },
+      "thursday": {
+        "enabled": true,
+        "open": "",
+        "close": ""
+      },
+      "friday": {
+        "enabled": true,
+        "open": "",
+        "close": ""
+      },
+      "saturday": {
+        "enabled": false,
+        "open": "",
+        "close": ""
+      },
+      "sunday": {
+        "enabled": false,
+        "open": "",
+        "close": ""
+      }
+    }
+  },
+
+  "socialMedia": {
+    "facebook": "",
+    "instagram": "",
+    "linkedin": "",
+    "youtube": "",
+    "tiktok": "",
+    "x": "",
+    "telegram": ""
+  },
+
+  "locations": [
+    {
+      "id": "",
+      "name": "",
+      "type": "head-office",
+
+      "address": {
+        "street": "",
+        "city": "",
+        "region": "",
+        "country": "",
+        "postalCode": ""
+      },
+
+      "phone": "",
+      "email": "",
+      "googleMapsUrl": "",
+
+      "coordinates": {
+        "latitude": null,
+        "longitude": null
+      },
+
+      "businessHours": {
+        "timezone": "",
+        "schedule": {}
+      }
+    }
+  ],
+
+  "companyStructure": {
+    "departments": [],
+    "teamMembers": [
+      {
+        "id": "",
+        "name": "",
+        "position": "",
+        "department": "",
+        "shortBio": "",
+        "photo": "",
+        "email": "",
+        "linkedin": ""
+      }
+    ]
+  },
+
+  "credentials": {
+    "certifications": [
+      {
+        "id": "",
+        "name": "",
+        "issuer": "",
+        "certificateNumber": "",
+        "issueDate": "",
+        "expiryDate": "",
+        "document": "",
+        "logo": ""
+      }
+    ],
+
+    "awards": [
+      {
+        "id": "",
+        "name": "",
+        "issuer": "",
+        "year": "",
+        "description": ""
+      }
+    ],
+
+    "memberships": [
+      {
+        "id": "",
+        "organization": "",
+        "membershipType": "",
+        "memberSince": "",
+        "logo": ""
+      }
+    ]
+  },
+
+  "relationships": {
+    "clients": [
+      {
+        "id": "",
+        "name": "",
+        "logo": "",
+        "description": "",
+        "website": ""
+      }
+    ],
+
+    "partners": [
+      {
+        "id": "",
+        "name": "",
+        "logo": "",
+        "description": "",
+        "website": ""
+      }
+    ]
+  },
+
+  "businessMetrics": {
+    "yearsOfExperience": null,
+    "projectsCompleted": null,
+    "clientsServed": null,
+    "employees": null,
+    "locationsCount": null,
+    "countriesServed": null,
+    "otherMetrics": []
+  },
+
+  "legal": {
+    "registrationNumber": "",
+    "taxIdentificationNumber": "",
+    "privacyPolicyUrl": "",
+    "termsUrl": "",
+    "cookiePolicyUrl": ""
+  },
+
+  "contentRules": {
+    "clientProvidedInformationIsAuthoritative": true,
+    "doNotInventBusinessInformation": true,
+    "doNotInventStatistics": true,
+    "doNotInventCertifications": true,
+    "doNotInventClients": true,
+    "doNotInventAwards": true,
+    "doNotInventLocations": true
+  }
+}

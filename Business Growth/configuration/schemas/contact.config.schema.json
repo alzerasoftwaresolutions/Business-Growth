@@ -1,0 +1,354 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "./schemas/contact.config.schema.json",
+  "title": "Business Growth — Contact Configuration",
+  "description": "Contact: channels, contact page, contact form, RFQ form, lead routing, lead tracking, CTA, accessibility, rules. Mirrors configuration/contact.config.json (authoritative).",
+  "type": "object",
+  "required": ["contact", "contactForm", "rfq", "leadRouting", "leadTracking", "callToAction", "accessibility", "rules"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "contact": {
+      "type": "object",
+      "required": ["enabled", "primaryContact", "channels", "contactPage"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "primaryContact": {
+          "type": "object",
+          "required": ["email", "phone", "whatsapp"],
+          "additionalProperties": false,
+          "properties": {
+            "email": { "type": "string" },
+            "phone": { "type": "string" },
+            "whatsapp": { "type": "string" }
+          }
+        },
+        "channels": {
+          "type": "object",
+          "required": ["email", "phone", "whatsapp", "googleMaps", "socialMedia"],
+          "additionalProperties": false,
+          "properties": {
+            "email": {
+              "type": "object",
+              "required": ["enabled", "address", "displayLabel", "subjectPrefix", "defaultSubject", "openInNewTab"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "address": { "type": "string" },
+                "displayLabel": { "type": "string" },
+                "subjectPrefix": { "type": "string" },
+                "defaultSubject": { "type": "string" },
+                "openInNewTab": { "type": "boolean" }
+              }
+            },
+            "phone": {
+              "type": "object",
+              "required": ["enabled", "number", "displayLabel", "clickToCall"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "number": { "type": "string" },
+                "displayLabel": { "type": "string" },
+                "clickToCall": { "type": "boolean" }
+              }
+            },
+            "whatsapp": {
+              "type": "object",
+              "required": ["enabled", "number", "displayLabel", "defaultMessage", "prefillMessage"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "number": { "type": "string" },
+                "displayLabel": { "type": "string" },
+                "defaultMessage": { "type": "string" },
+                "prefillMessage": { "type": "boolean" }
+              }
+            },
+            "googleMaps": {
+              "type": "object",
+              "required": ["enabled", "url", "embedUrl", "showDirections"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "url": { "type": "string" },
+                "embedUrl": { "type": "string" },
+                "showDirections": { "type": "boolean" }
+              }
+            },
+            "socialMedia": {
+              "type": "object",
+              "required": ["enabled", "platforms"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "platforms": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        },
+        "contactPage": {
+          "type": "object",
+          "required": ["enabled", "route", "title", "intro", "showContactForm", "showPhone", "showEmail", "showWhatsApp", "showAddress", "showBusinessHours", "showMap", "showSocialMedia", "showDirections"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "route": { "type": "string" },
+            "title": { "type": "string" },
+            "intro": { "type": "string" },
+            "showContactForm": { "type": "boolean" },
+            "showPhone": { "type": "boolean" },
+            "showEmail": { "type": "boolean" },
+            "showWhatsApp": { "type": "boolean" },
+            "showAddress": { "type": "boolean" },
+            "showBusinessHours": { "type": "boolean" },
+            "showMap": { "type": "boolean" },
+            "showSocialMedia": { "type": "boolean" },
+            "showDirections": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "contactForm": { "$ref": "#/$defs/form" },
+    "rfq": { "$ref": "#/$defs/rfqForm" },
+    "leadRouting": {
+      "type": "object",
+      "required": ["enabled", "contactForm", "rfq", "notification"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "contactForm": { "$ref": "#/$defs/leadDestination" },
+        "rfq": { "$ref": "#/$defs/leadDestination" },
+        "notification": {
+          "type": "object",
+          "required": ["enabled", "email", "whatsapp"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "email": {
+              "type": "object",
+              "required": ["enabled", "recipients"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "recipients": { "type": "array", "items": { "type": "string" } }
+              }
+            },
+            "whatsapp": {
+              "type": "object",
+              "required": ["enabled", "number"],
+              "additionalProperties": false,
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "number": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "leadTracking": {
+      "type": "object",
+      "required": ["enabled", "events"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "events": {
+          "type": "object",
+          "required": ["contactFormStarted", "contactFormSubmitted", "contactFormFailed", "rfqStarted", "rfqSubmitted", "rfqFailed", "phoneClicked", "emailClicked", "whatsappClicked", "mapClicked"],
+          "additionalProperties": false,
+          "properties": {
+            "contactFormStarted": { "type": "boolean" },
+            "contactFormSubmitted": { "type": "boolean" },
+            "contactFormFailed": { "type": "boolean" },
+            "rfqStarted": { "type": "boolean" },
+            "rfqSubmitted": { "type": "boolean" },
+            "rfqFailed": { "type": "boolean" },
+            "phoneClicked": { "type": "boolean" },
+            "emailClicked": { "type": "boolean" },
+            "whatsappClicked": { "type": "boolean" },
+            "mapClicked": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "callToAction": {
+      "type": "object",
+      "required": ["primary", "secondary"],
+      "additionalProperties": false,
+      "properties": {
+        "primary": { "$ref": "#/$defs/ctaLink" },
+        "secondary": { "$ref": "#/$defs/ctaLink" }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "required": ["labelsRequired", "errorMessagesMustBeAssociatedWithFields", "keyboardAccessible", "focusManagement", "successMessageAnnounced", "errorMessageAnnounced"],
+      "additionalProperties": false,
+      "properties": {
+        "labelsRequired": { "type": "boolean" },
+        "errorMessagesMustBeAssociatedWithFields": { "type": "boolean" },
+        "keyboardAccessible": { "type": "boolean" },
+        "focusManagement": { "type": "boolean" },
+        "successMessageAnnounced": { "type": "boolean" },
+        "errorMessageAnnounced": { "type": "boolean" }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "required": ["doNotInventContactInformation", "doNotInventFormRecipients", "doNotCollectUnapprovedPersonalInformation", "doNotExposePrivateLeadDataPublicly", "doNotSendLeadDataToUnapprovedServices", "validateAllUserInput", "sanitizeAllSubmittedData", "respectFeatureConfiguration"],
+      "additionalProperties": false,
+      "properties": {
+        "doNotInventContactInformation": { "type": "boolean" },
+        "doNotInventFormRecipients": { "type": "boolean" },
+        "doNotCollectUnapprovedPersonalInformation": { "type": "boolean" },
+        "doNotExposePrivateLeadDataPublicly": { "type": "boolean" },
+        "doNotSendLeadDataToUnapprovedServices": { "type": "boolean" },
+        "validateAllUserInput": { "type": "boolean" },
+        "sanitizeAllSubmittedData": { "type": "boolean" },
+        "respectFeatureConfiguration": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "formField": {
+      "type": "object",
+      "required": ["id", "name", "label", "type", "required", "enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "label": { "type": "string" },
+        "type": { "enum": ["text", "email", "tel", "number", "textarea", "select", "file"] },
+        "required": { "type": "boolean" },
+        "enabled": { "type": "boolean" },
+        "placeholder": { "type": "string" },
+        "autocomplete": { "type": "string" },
+        "optionsSource": { "type": "string" },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["value", "label"],
+            "additionalProperties": false,
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            }
+          }
+        },
+        "minimum": { "type": "integer" },
+        "acceptedTypes": { "type": "array", "items": { "type": "string" } },
+        "maxFileSizeMB": { "type": "integer", "minimum": 0 },
+        "multiple": { "type": "boolean" }
+      }
+    },
+    "formFieldList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/formField" }
+    },
+    "spamProtection": {
+      "type": "object",
+      "required": ["enabled", "honeypot", "rateLimiting", "recaptcha"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "honeypot": { "type": "boolean" },
+        "rateLimiting": { "type": "boolean" },
+        "recaptcha": {
+          "type": "object",
+          "required": ["enabled", "provider", "siteKey"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "provider": { "type": "string" },
+            "siteKey": { "type": "string" }
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["clientSide", "serverSide"],
+      "additionalProperties": false,
+      "properties": {
+        "clientSide": { "type": "boolean" },
+        "serverSide": { "type": "boolean" },
+        "trimWhitespace": { "type": "boolean" },
+        "normalizeEmail": { "type": "boolean" },
+        "preventEmptySubmission": { "type": "boolean" },
+        "requiredFieldsMustBeCompleted": { "type": "boolean" },
+        "sanitizeInput": { "type": "boolean" }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "required": ["privacyNoticeEnabled", "privacyPolicyRequired", "consentRequired", "consentText"],
+      "additionalProperties": false,
+      "properties": {
+        "privacyNoticeEnabled": { "type": "boolean" },
+        "privacyPolicyRequired": { "type": "boolean" },
+        "consentRequired": { "type": "boolean" },
+        "consentText": { "type": "string" }
+      }
+    },
+    "form": {
+      "type": "object",
+      "required": ["enabled", "formId", "title", "description", "submitLabel", "successMessage", "errorMessage", "loadingMessage", "fields", "spamProtection", "validation", "privacy"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "formId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "submitLabel": { "type": "string" },
+        "successMessage": { "type": "string" },
+        "errorMessage": { "type": "string" },
+        "loadingMessage": { "type": "string" },
+        "fields": { "$ref": "#/$defs/formFieldList" },
+        "spamProtection": { "$ref": "#/$defs/spamProtection" },
+        "validation": { "$ref": "#/$defs/validation" },
+        "privacy": { "$ref": "#/$defs/privacy" }
+      }
+    },
+    "rfqForm": {
+      "type": "object",
+      "required": ["enabled", "route", "title", "intro", "submitLabel", "successMessage", "errorMessage", "loadingMessage", "fields", "spamProtection", "validation", "privacy"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "route": { "type": "string" },
+        "title": { "type": "string" },
+        "intro": { "type": "string" },
+        "submitLabel": { "type": "string" },
+        "successMessage": { "type": "string" },
+        "errorMessage": { "type": "string" },
+        "loadingMessage": { "type": "string" },
+        "fields": { "$ref": "#/$defs/formFieldList" },
+        "spamProtection": { "$ref": "#/$defs/spamProtection" },
+        "validation": { "$ref": "#/$defs/validation" },
+        "privacy": { "$ref": "#/$defs/privacy" }
+      }
+    },
+    "leadDestination": {
+      "type": "object",
+      "required": ["destinationType", "destination", "subject"],
+      "additionalProperties": false,
+      "properties": {
+        "destinationType": { "type": "string" },
+        "destination": { "type": "string" },
+        "subject": { "type": "string" }
+      }
+    },
+    "ctaLink": {
+      "type": "object",
+      "required": ["enabled", "label", "href"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "label": { "type": "string" },
+        "href": { "type": "string" }
+      }
+    }
+  }
+}
